@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:movies/constants.dart';
+import 'package:movies/home_screen/view_model/popular_movies_provider.dart';
+import 'package:movies/home_screen/views/home_tap.dart';
+import 'package:provider/provider.dart';
 
 class HomeMovies extends StatelessWidget {
   static const String routeName = '/';
@@ -7,7 +11,21 @@ class HomeMovies extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(color: Colors.red),
+      backgroundColor: Constants.blackColor,
+      body: MultiProvider(
+        providers: [
+          ChangeNotifierProvider<PopularMoviesProvider>(
+            create: (_) => PopularMoviesProvider(),
+          ),
+        ],
+        child: const SafeArea(
+          child: HomeTab(
+              //YOur code goes here
+              ),
+        ),
+      ),
+
+      //MultiProvider(child: HomeTab()),
     );
   }
 }
