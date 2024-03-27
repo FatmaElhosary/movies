@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:movies/constants.dart';
+import 'package:movies/home_screen/models/popular_movies_res.dart';
 import 'package:movies/home_screen/views/image_container.dart';
 
 class RecommendedMovie extends StatelessWidget {
-  const RecommendedMovie({super.key});
+  const RecommendedMovie({super.key, required this.movie});
+  final Result movie;
 
   @override
   Widget build(BuildContext context) {
@@ -32,9 +34,9 @@ class RecommendedMovie extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Expanded(
+            Expanded(
               child: ImageContainer(
-                  imgUrl: '/kDp1vUBnMpe8ak4rjgl3cLELqjU.jpg',
+                  imgUrl: movie.posterPath ?? '',
                   width: double.infinity,
                   height: 127),
             ),

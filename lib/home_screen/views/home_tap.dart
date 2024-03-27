@@ -1,10 +1,14 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:movies/constants.dart';
-import 'package:movies/home_screen/view_model/popular_movies_provider.dart';
+import 'package:movies/home_screen/view_model/movies_provider.dart';
 import 'package:movies/home_screen/views/image_container.dart';
 import 'package:movies/home_screen/views/popular_movie.dart';
+import 'package:movies/home_screen/views/popular_movies_carousel.dart';
 import 'package:movies/home_screen/views/recommend_movie.dart';
+import 'package:movies/home_screen/views/recommended_list.dart';
+import 'package:movies/home_screen/views/upcomming_list.dart';
+import 'package:movies/home_screen/views/upcomming_movie.dart';
 import 'package:movies/shared_widgets/waiting_widget.dart';
 import 'package:provider/provider.dart';
 
@@ -19,36 +23,12 @@ class _HomeTabState extends State<HomeTab> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    var popularProvider = Provider.of<PopularMoviesProvider>(context);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Expanded(
+        const Expanded(
           flex: 4,
-          child: CarouselSlider.builder(
-            itemCount: popularProvider.currentPopular.length,
-            itemBuilder: (context, int itemIndex, int pageViewIndex) {
-              if (popularProvider.isLoading) {
-                return const WatingWidget();
-              } else if (popularProvider.errorMessage != null) {
-                return Center(
-                  child: Text(
-                    popularProvider.errorMessage ?? '',
-                    style: const TextStyle(color: Colors.red),
-                  ),
-                );
-              }
-              return PopularMovie(
-                result: popularProvider.currentPopular[itemIndex],
-              );
-            },
-            options: CarouselOptions(
-              height: MediaQuery.of(context).size.height * .4,
-              //aspectRatio: 2.0,
-              // autoPlay: true,
-              viewportFraction: 1,
-            ),
-          ),
+          child: PopularCarouselSlider(),
         ),
         Expanded(
           flex: 3,
@@ -63,20 +43,7 @@ class _HomeTabState extends State<HomeTab> {
                   'New Releases ',
                   style: theme.textTheme.titleMedium,
                 ),
-                Expanded(
-                  child: ListView.builder(
-                    scrollDirection: Axis.horizontal,
-                    itemBuilder: (context, index) => Padding(
-                      padding: const EdgeInsets.only(right: 12, top: 8),
-                      child: ImageContainer(
-                        imgUrl: '/kDp1vUBnMpe8ak4rjgl3cLELqjU.jpg',
-                        width: MediaQuery.of(context).size.width / 3,
-                        height: 127,
-                      ),
-                    ),
-                    itemCount: 5,
-                  ),
-                )
+                const UpcomingList(),
               ],
             ),
           ),
@@ -94,13 +61,7 @@ class _HomeTabState extends State<HomeTab> {
                   'Recomended',
                   style: theme.textTheme.titleMedium,
                 ),
-                Expanded(
-                  child: ListView.builder(
-                    scrollDirection: Axis.horizontal,
-                    itemBuilder: (context, index) => const RecommendedMovie(),
-                    itemCount: 5,
-                  ),
-                ),
+                const RecommendedList(),
               ],
             ),
           ),
@@ -109,6 +70,14 @@ class _HomeTabState extends State<HomeTab> {
     );
   }
 }
+
+
+
+
+
+
+
+
      /*   CarouselSlider(
           options: CarouselOptions(
             height: MediaQuery.of(context).size.height * .3,

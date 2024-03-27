@@ -14,7 +14,15 @@ class ApiManager {
 
   static Future<PopularMoviesRes> getUpcommingMovies() async {
     var url = Uri.parse(
-      '${Constants.baseUrl}/upcoming',
+      'https://api.themoviedb.org/3/movie/upcoming?',
+    );
+    var res = await http.get(url, headers: Constants.headers);
+    return PopularMoviesRes.fromJson(jsonDecode(res.body));
+  }
+
+  static Future<PopularMoviesRes> getRecommendedMovies() async {
+    var url = Uri.parse(
+      'https://api.themoviedb.org/3/movie/top_rated?',
     );
     var res = await http.get(url, headers: Constants.headers);
     return PopularMoviesRes.fromJson(jsonDecode(res.body));

@@ -1,0 +1,31 @@
+import 'package:flutter/material.dart';
+import 'package:movies/home_screen/view_model/movies_provider.dart';
+import 'package:movies/home_screen/views/upcomming_movie.dart';
+import 'package:movies/shared_widgets/waiting_widget.dart';
+import 'package:provider/provider.dart';
+
+class UpcomingList extends StatelessWidget {
+  const UpcomingList({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Consumer<MoviesProvider>(
+      builder: (BuildContext context, moviesProvider, Widget? child) {
+        if (moviesProvider.upcommingIsLoading) {
+          return const WatingWidget();
+        } else if (moviesProvider.upcommingrErrorMessage != null) {
+          return Text(moviesProvider.popularErrorMessage ?? '');
+        }
+        return Expanded(
+          child: ListView.builder(
+            scrollDirection: Axis.horizontal,
+            itemBuilder: (context, index) => UpcommingMovie(
+              movie: moviesProvider.currentUpcomming[index],
+            ),
+            itemCount: moviesProvider.currentUpcomming.length,
+          ),
+        );
+      },
+    );
+  }
+}
