@@ -1,8 +1,8 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:movies/home_screen/view_model/movies_provider.dart';
-import 'package:movies/home_screen/views/popular_movie.dart';
-import 'package:movies/shared_widgets/waiting_widget.dart';
+import 'package:movies/home_tab/view_model/movies_provider.dart';
+import 'package:movies/home_tab/views/widgets/popular_movie.dart';
+import 'package:movies/shared/waiting_widget.dart';
 import 'package:provider/provider.dart';
 
 class PopularCarouselSlider extends StatelessWidget {

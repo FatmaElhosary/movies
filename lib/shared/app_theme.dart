@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:movies/constants.dart';
+import 'package:movies/shared/constants.dart';
 
 class AppTheme {
   static ThemeData appTheme = ThemeData(

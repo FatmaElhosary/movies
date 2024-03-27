@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:movies/home_screen/view_model/movies_provider.dart';
-import 'package:movies/home_screen/views/recommend_movie.dart';
-import 'package:movies/shared_widgets/waiting_widget.dart';
+import 'package:movies/home_tab/view_model/movies_provider.dart';
+import 'package:movies/home_tab/views/widgets/recommend_movie.dart';
+import 'package:movies/shared/waiting_widget.dart';
 import 'package:provider/provider.dart';
 
 class RecommendedList extends StatelessWidget {

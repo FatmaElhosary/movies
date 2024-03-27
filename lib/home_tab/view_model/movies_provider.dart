@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:movies/home_screen/models/popular_movies_res.dart';
-import 'package:movies/data/api_models/api_manager.dart';
+import 'package:movies/home_tab/models/popular_movies_res.dart';
+import 'package:movies/home_tab/data/models/movies_model.dart';
 
 class MoviesProvider with ChangeNotifier {
   List<Result> popularMovies = [];
@@ -23,7 +23,7 @@ class MoviesProvider with ChangeNotifier {
     popularIsLoading = true;
     notifyListeners();
     try {
-      PopularMoviesRes popularMoviesRes = await ApiManager.getPopularMovies();
+      PopularMoviesRes popularMoviesRes = await MoviesModel.getPopularMovies();
       if (popularMoviesRes.statusMessage == null) {
         popularMovies = popularMoviesRes.results ?? [];
       } else {
@@ -42,7 +42,7 @@ class MoviesProvider with ChangeNotifier {
     notifyListeners();
     try {
       PopularMoviesRes upcommingMoviesRes =
-          await ApiManager.getUpcommingMovies();
+          await MoviesModel.getUpcommingMovies();
       if (upcommingMoviesRes.statusMessage == null) {
         upcommingMovies = upcommingMoviesRes.results ?? [];
       } else {
@@ -61,7 +61,7 @@ class MoviesProvider with ChangeNotifier {
     notifyListeners();
     try {
       PopularMoviesRes recommendedMoviesRes =
-          await ApiManager.getUpcommingMovies();
+          await MoviesModel.getUpcommingMovies();
       if (recommendedMoviesRes.statusMessage == null) {
         recommendedMovies = recommendedMoviesRes.results ?? [];
       } else {

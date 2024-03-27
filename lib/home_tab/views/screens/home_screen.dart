@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:movies/constants.dart';
-import 'package:movies/home_screen/view_model/movies_provider.dart';
-import 'package:movies/home_screen/views/home_tap.dart';
+import 'package:movies/shared/constants.dart';
+import 'package:movies/home_tab/view_model/movies_provider.dart';
+import 'package:movies/home_tab/views/home_tap.dart';
 import 'package:provider/provider.dart';
 
 class HomeMovies extends StatelessWidget {
