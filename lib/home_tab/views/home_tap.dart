@@ -1,16 +1,8 @@
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:movies/constants.dart';
-import 'package:movies/home_screen/view_model/movies_provider.dart';
-import 'package:movies/home_screen/views/image_container.dart';
-import 'package:movies/home_screen/views/popular_movie.dart';
-import 'package:movies/home_screen/views/popular_movies_carousel.dart';
-import 'package:movies/home_screen/views/recommend_movie.dart';
-import 'package:movies/home_screen/views/recommended_list.dart';
-import 'package:movies/home_screen/views/upcomming_list.dart';
-import 'package:movies/home_screen/views/upcomming_movie.dart';
-import 'package:movies/shared_widgets/waiting_widget.dart';
-import 'package:provider/provider.dart';
+import 'package:movies/shared/constants.dart';
+import 'package:movies/home_tab/views/widgets/popular_movies_carousel.dart';
+import 'package:movies/home_tab/views/widgets/recommended_list.dart';
+import 'package:movies/home_tab/views/widgets/upcomming_list.dart';
 
 class HomeTab extends StatefulWidget {
   const HomeTab({super.key});

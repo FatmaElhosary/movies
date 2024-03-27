@@ -1,7 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:movies/app_theme.dart';
-import 'package:movies/home_screen/views/home_screen.dart';
+import 'package:movies/shared/app_theme.dart';
+import 'package:movies/home_tab/views/screens/home_screen.dart';
 
 void main() {
   runApp(const MoviesApp());

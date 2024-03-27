@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:movies/constants.dart';
+import 'package:movies/shared/constants.dart';
 
 class ImageContainer extends StatelessWidget {
   const ImageContainer(

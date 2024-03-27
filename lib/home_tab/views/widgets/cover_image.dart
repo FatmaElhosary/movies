@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:movies/constants.dart';
-import 'package:movies/shared_widgets/waiting_widget.dart';
+import 'package:movies/shared/constants.dart';
+import 'package:movies/shared/waiting_widget.dart';
 
 class CoverImage extends StatelessWidget {
   const CoverImage({super.key, required this.imgUrl});

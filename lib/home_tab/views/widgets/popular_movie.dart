@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:movies/home_screen/models/popular_movies_res.dart';
-import 'package:movies/home_screen/views/cover_image.dart';
-import 'package:movies/home_screen/views/image_container.dart';
+import 'package:movies/home_tab/models/popular_movies_res.dart';
+import 'package:movies/home_tab/views/widgets/cover_image.dart';
+import 'package:movies/home_tab/views/widgets/image_container.dart';
 
 class PopularMovie extends StatelessWidget {
   const PopularMovie({super.key, required this.result});

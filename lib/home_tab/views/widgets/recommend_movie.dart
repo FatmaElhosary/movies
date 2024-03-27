@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:movies/constants.dart';
-import 'package:movies/home_screen/models/popular_movies_res.dart';
-import 'package:movies/home_screen/views/image_container.dart';
+import 'package:movies/shared/constants.dart';
+import 'package:movies/home_tab/models/popular_movies_res.dart';
+import 'package:movies/home_tab/views/widgets/image_container.dart';
 
 class RecommendedMovie extends StatelessWidget {
   const RecommendedMovie({super.key, required this.movie});

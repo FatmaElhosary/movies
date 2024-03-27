@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:movies/home_screen/models/popular_movies_res.dart';
-import 'package:movies/home_screen/views/image_container.dart';
+import 'package:movies/home_tab/models/popular_movies_res.dart';
+import 'package:movies/home_tab/views/widgets/image_container.dart';
 
 class UpcommingMovie extends StatelessWidget {
   const UpcommingMovie({super.key,required this.movie});
