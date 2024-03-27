@@ -21,7 +21,7 @@ class CoverImage extends StatelessWidget {
             image: DecorationImage(
               matchTextDirection: true,
               image: imageProvider,
-              fit: BoxFit.fill,
+              fit: BoxFit.cover,
             ),
           ),
           child: Image.asset('assets/images/play_button.png'),

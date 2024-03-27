@@ -18,8 +18,8 @@ class PopularMovie extends StatelessWidget {
         Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            const SizedBox(
-              height: 70,
+            SizedBox(
+              height: MediaQuery.of(context).size.height / 10,
             ),
             SizedBox(
               height: MediaQuery.of(context).size.height / 3.5,
@@ -33,6 +33,7 @@ class PopularMovie extends StatelessWidget {
                   ImageContainer(
                     imgUrl: result.backdropPath ?? '',
                     width: MediaQuery.of(context).size.width / 2.5 - 20,
+                    height: MediaQuery.of(context).size.height / 4,
                   ),
                   Padding(
                     padding: const EdgeInsets.only(bottom: 20, left: 20),

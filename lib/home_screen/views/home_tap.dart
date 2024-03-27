@@ -1,7 +1,10 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:movies/constants.dart';
 import 'package:movies/home_screen/view_model/popular_movies_provider.dart';
+import 'package:movies/home_screen/views/image_container.dart';
 import 'package:movies/home_screen/views/popular_movie.dart';
+import 'package:movies/home_screen/views/recommend_movie.dart';
 import 'package:movies/shared_widgets/waiting_widget.dart';
 import 'package:provider/provider.dart';
 
@@ -15,52 +18,93 @@ class HomeTab extends StatefulWidget {
 class _HomeTabState extends State<HomeTab> {
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     var popularProvider = Provider.of<PopularMoviesProvider>(context);
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        CarouselSlider.builder(
-          itemCount: popularProvider.currentPopular.length,
-          itemBuilder: (context, int itemIndex, int pageViewIndex) {
-            if (popularProvider.isLoading) {
-              return const WatingWidget();
-            } else if (popularProvider.errorMessage != null) {
-              return Center(
-                child: Text(
-                  popularProvider.errorMessage ?? '',
-                  style: const TextStyle(color: Colors.red),
-                ),
+        Expanded(
+          flex: 4,
+          child: CarouselSlider.builder(
+            itemCount: popularProvider.currentPopular.length,
+            itemBuilder: (context, int itemIndex, int pageViewIndex) {
+              if (popularProvider.isLoading) {
+                return const WatingWidget();
+              } else if (popularProvider.errorMessage != null) {
+                return Center(
+                  child: Text(
+                    popularProvider.errorMessage ?? '',
+                    style: const TextStyle(color: Colors.red),
+                  ),
+                );
+              }
+              return PopularMovie(
+                result: popularProvider.currentPopular[itemIndex],
               );
-            }
-            return PopularMovie(
-              result: popularProvider.currentPopular[itemIndex],
-            );
-          },
-          options: CarouselOptions(
-            height: MediaQuery.of(context).size.height * .4,
-            //aspectRatio: 2.0,
-            // autoPlay: true,
-            viewportFraction: 1,
+            },
+            options: CarouselOptions(
+              height: MediaQuery.of(context).size.height * .4,
+              //aspectRatio: 2.0,
+              // autoPlay: true,
+              viewportFraction: 1,
+            ),
           ),
         ),
-        /*   Stack(
-          alignment: AlignmentDirectional.topCenter,
-          children: [
-            Container(
-              height: 200,
-              color: Colors.blue[100],
-            ),
-            const Column(
-              mainAxisSize: MainAxisSize.min,
+        Expanded(
+          flex: 3,
+          child: Container(
+            margin: const EdgeInsets.symmetric(vertical: 20),
+            padding: const EdgeInsets.only(top: 8, left: 12, bottom: 8),
+            color: Constants.darkgreyColor,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SizedBox(
-                  height: 150,
+                Text(
+                  'New Releases ',
+                  style: theme.textTheme.titleMedium,
                 ),
-                SizedBox(height: 100, width: 100, child: Placeholder()),
+                Expanded(
+                  child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemBuilder: (context, index) => Padding(
+                      padding: const EdgeInsets.only(right: 12, top: 8),
+                      child: ImageContainer(
+                        imgUrl: '/kDp1vUBnMpe8ak4rjgl3cLELqjU.jpg',
+                        width: MediaQuery.of(context).size.width / 3,
+                        height: 127,
+                      ),
+                    ),
+                    itemCount: 5,
+                  ),
+                )
               ],
-            )
-          ],
+            ),
+          ),
         ),
-       */
+        Expanded(
+          flex: 3,
+          child: Container(
+            // margin: const EdgeInsets.only(top: 8),
+            padding: const EdgeInsets.only(top: 8, left: 12, bottom: 8),
+            color: Constants.darkgreyColor,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Recomended',
+                  style: theme.textTheme.titleMedium,
+                ),
+                Expanded(
+                  child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemBuilder: (context, index) => const RecommendedMovie(),
+                    itemCount: 5,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
       ],
     );
   }
@@ -78,4 +122,23 @@ class _HomeTabState extends State<HomeTab> {
             );
           }).toList(),
         )
+       */
+          /*   Stack(
+          alignment: AlignmentDirectional.topCenter,
+          children: [
+            Container(
+              height: 200,
+              color: Colors.blue[100],
+            ),
+            const Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                SizedBox(
+                  height: 150,
+                ),
+                SizedBox(height: 100, width: 100, child: Placeholder()),
+              ],
+            )
+          ],
+        ),
        */

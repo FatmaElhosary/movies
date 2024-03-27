@@ -1,3 +1,4 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:movies/app_theme.dart';
 import 'package:movies/home_screen/views/home_screen.dart';
@@ -12,6 +13,8 @@ class MoviesApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      //scroll i n web
+      scrollBehavior: MyCustomScrollBehavior(),
       title: 'Flutter Movies',
       theme: AppTheme.appTheme,
       debugShowCheckedModeBanner: false,
@@ -20,4 +23,13 @@ class MoviesApp extends StatelessWidget {
       },
     );
   }
+}
+
+class MyCustomScrollBehavior extends MaterialScrollBehavior {
+  // Override behavior methods and getters like dragDevices
+  @override
+  Set<PointerDeviceKind> get dragDevices => {
+        PointerDeviceKind.touch,
+        PointerDeviceKind.mouse,
+      };
 }

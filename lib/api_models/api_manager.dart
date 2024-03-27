@@ -11,4 +11,12 @@ class ApiManager {
     var res = await http.get(url, headers: Constants.headers);
     return PopularMoviesRes.fromJson(jsonDecode(res.body));
   }
+
+  static Future<PopularMoviesRes> getUpcommingMovies() async {
+    var url = Uri.parse(
+      '${Constants.baseUrl}/upcoming',
+    );
+    var res = await http.get(url, headers: Constants.headers);
+    return PopularMoviesRes.fromJson(jsonDecode(res.body));
+  }
 }

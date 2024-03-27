@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:movies/home_screen/models/popular_movies_res.dart';
-import 'package:movies/models/api_manager.dart';
+import 'package:movies/api_models/api_manager.dart';
 
 class PopularMoviesProvider with ChangeNotifier {
   List<Result> popularMovies = [];
