@@ -3,24 +3,26 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:movies/constants.dart';
 
 class ImageContainer extends StatelessWidget {
-  const ImageContainer({super.key, required this.imgUrl, required this.width});
+  const ImageContainer(
+      {super.key, required this.imgUrl, required this.width, this.height});
   final String imgUrl;
   final double width;
+  final double? height;
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       width: width,
-      height: MediaQuery.of(context).size.height / 3.5,
+      //height: 127,
+      height: height,
       child: CachedNetworkImage(
         imageUrl: '${Constants.baseImageUrl}$imgUrl',
         imageBuilder: (context, imageProvider) => Container(
           alignment: Alignment.topLeft,
-          /* width: width,
-          height: MediaQuery.of(context).size.height / 3.5, */
           decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(4),
             image: DecorationImage(
               image: imageProvider,
-              fit: BoxFit.fill,
+              fit: BoxFit.cover,
             ),
           ),
           child: Image.asset('assets/images/bookmark.png'),

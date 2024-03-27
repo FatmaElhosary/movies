@@ -4,7 +4,6 @@ import 'package:movies/constants.dart';
 class AppTheme {
   static ThemeData appTheme = ThemeData(
       useMaterial3: true,
-      
       textTheme: const TextTheme(
         headlineMedium: TextStyle(
             color: Constants.whiteColor,
@@ -16,5 +15,15 @@ class AppTheme {
             fontSize: 10,
             fontWeight: FontWeight.w400,
             fontFamily: 'Inter'),
+        titleMedium: TextStyle(
+            color: Constants.whiteColor,
+            fontSize: 15,
+            fontWeight: FontWeight.w400,
+            fontFamily: 'Inter'),
+        headlineLarge: TextStyle(
+            color: Constants.whiteColor,
+            fontSize: 10,
+            fontWeight: FontWeight.w400,
+            fontFamily: 'Poppins'),
       ));
 }

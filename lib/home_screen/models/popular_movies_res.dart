@@ -1,17 +1,21 @@
+
 class PopularMoviesRes {
+  // DateModel? dates;
   int? page;
   List<Result>? results;
   int? totalPages;
   int? totalResults;
   String? statusMessage;
-  PopularMoviesRes(
-      {this.page,
-      this.results,
-      this.totalPages,
-      this.totalResults,
-      this.statusMessage});
+  PopularMoviesRes({
+    this.page,
+    this.results,
+    this.totalPages,
+    this.totalResults,
+    this.statusMessage,
+  });
 
   PopularMoviesRes.fromJson(Map<String, dynamic> json) {
+    // dates = json["dates"];
     page = json["page"];
     results = json["results"] == null
         ? null
@@ -22,14 +26,14 @@ class PopularMoviesRes {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> _data = <String, dynamic>{};
-    _data["page"] = page;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data["page"] = page;
     if (results != null) {
-      _data["results"] = results?.map((e) => e.toJson()).toList();
+      data["results"] = results?.map((e) => e.toJson()).toList();
     }
-    _data["total_pages"] = totalPages;
-    _data["total_results"] = totalResults;
-    return _data;
+    data["total_pages"] = totalPages;
+    data["total_results"] = totalResults;
+    return data;
   }
 }
 
@@ -84,23 +88,23 @@ class Result {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> _data = <String, dynamic>{};
-    _data["adult"] = adult;
-    _data["backdrop_path"] = backdropPath;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data["adult"] = adult;
+    data["backdrop_path"] = backdropPath;
     if (genreIds != null) {
-      _data["genre_ids"] = genreIds;
+      data["genre_ids"] = genreIds;
     }
-    _data["id"] = id;
-    _data["original_language"] = originalLanguage;
-    _data["original_title"] = originalTitle;
-    _data["overview"] = overview;
-    _data["popularity"] = popularity;
-    _data["poster_path"] = posterPath;
-    _data["release_date"] = releaseDate;
-    _data["title"] = title;
-    _data["video"] = video;
-    _data["vote_average"] = voteAverage;
-    _data["vote_count"] = voteCount;
-    return _data;
+    data["id"] = id;
+    data["original_language"] = originalLanguage;
+    data["original_title"] = originalTitle;
+    data["overview"] = overview;
+    data["popularity"] = popularity;
+    data["poster_path"] = posterPath;
+    data["release_date"] = releaseDate;
+    data["title"] = title;
+    data["video"] = video;
+    data["vote_average"] = voteAverage;
+    data["vote_count"] = voteCount;
+    return data;
   }
 }

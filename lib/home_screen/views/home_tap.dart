@@ -1,7 +1,14 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:movies/home_screen/view_model/popular_movies_provider.dart';
+import 'package:movies/constants.dart';
+import 'package:movies/home_screen/view_model/movies_provider.dart';
+import 'package:movies/home_screen/views/image_container.dart';
 import 'package:movies/home_screen/views/popular_movie.dart';
+import 'package:movies/home_screen/views/popular_movies_carousel.dart';
+import 'package:movies/home_screen/views/recommend_movie.dart';
+import 'package:movies/home_screen/views/recommended_list.dart';
+import 'package:movies/home_screen/views/upcomming_list.dart';
+import 'package:movies/home_screen/views/upcomming_movie.dart';
 import 'package:movies/shared_widgets/waiting_widget.dart';
 import 'package:provider/provider.dart';
 
@@ -15,34 +22,77 @@ class HomeTab extends StatefulWidget {
 class _HomeTabState extends State<HomeTab> {
   @override
   Widget build(BuildContext context) {
-    var popularProvider = Provider.of<PopularMoviesProvider>(context);
+    final theme = Theme.of(context);
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        CarouselSlider.builder(
-          itemCount: popularProvider.currentPopular.length,
-          itemBuilder: (context, int itemIndex, int pageViewIndex) {
-            if (popularProvider.isLoading) {
-              return const WatingWidget();
-            } else if (popularProvider.errorMessage != null) {
-              return Center(
-                child: Text(
-                  popularProvider.errorMessage ?? '',
-                  style: const TextStyle(color: Colors.red),
+        const Expanded(
+          flex: 4,
+          child: PopularCarouselSlider(),
+        ),
+        Expanded(
+          flex: 3,
+          child: Container(
+            margin: const EdgeInsets.symmetric(vertical: 20),
+            padding: const EdgeInsets.only(top: 8, left: 12, bottom: 8),
+            color: Constants.darkgreyColor,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'New Releases ',
+                  style: theme.textTheme.titleMedium,
                 ),
-              );
-            }
-            return PopularMovie(
-              result: popularProvider.currentPopular[itemIndex],
-            );
-          },
-          options: CarouselOptions(
-            height: MediaQuery.of(context).size.height * .4,
-            //aspectRatio: 2.0,
-            // autoPlay: true,
-            viewportFraction: 1,
+                const UpcomingList(),
+              ],
+            ),
           ),
         ),
-        /*   Stack(
+        Expanded(
+          flex: 3,
+          child: Container(
+            // margin: const EdgeInsets.only(top: 8),
+            padding: const EdgeInsets.only(top: 8, left: 12, bottom: 8),
+            color: Constants.darkgreyColor,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Recomended',
+                  style: theme.textTheme.titleMedium,
+                ),
+                const RecommendedList(),
+              ],
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+
+
+
+
+
+
+
+     /*   CarouselSlider(
+          options: CarouselOptions(
+            height: MediaQuery.of(context).size.height * .3,
+            autoPlay: true,
+          ),
+          items: Provider.of<PopularMoviesProvider>(context)
+              .popularMovies
+              .map((movie) {
+            return TopImage(
+              result: movie,
+            );
+          }).toList(),
+        )
+       */
+          /*   Stack(
           alignment: AlignmentDirectional.topCenter,
           children: [
             Container(
@@ -60,22 +110,4 @@ class _HomeTabState extends State<HomeTab> {
             )
           ],
         ),
-       */
-      ],
-    );
-  }
-}
-     /*   CarouselSlider(
-          options: CarouselOptions(
-            height: MediaQuery.of(context).size.height * .3,
-            autoPlay: true,
-          ),
-          items: Provider.of<PopularMoviesProvider>(context)
-              .popularMovies
-              .map((movie) {
-            return TopImage(
-              result: movie,
-            );
-          }).toList(),
-        )
        */
