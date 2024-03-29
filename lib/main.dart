@@ -1,5 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:movies/home_tab/views/screens/menu_screen.dart';
 import 'package:movies/shared/app_theme.dart';
 import 'package:movies/home_tab/views/screens/home_screen.dart';
 
@@ -19,8 +20,10 @@ class MoviesApp extends StatelessWidget {
       theme: AppTheme.appTheme,
       debugShowCheckedModeBanner: false,
       routes: {
+        menuScreen.routeName:(_) => const menuScreen(),
         HomeMovies.routeName: (_) => const HomeMovies(),
       },
+      initialRoute: menuScreen.routeName,
     );
   }
 }
