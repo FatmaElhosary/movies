@@ -39,8 +39,8 @@ class PopularCarouselSlider extends StatelessWidget {
         );
       },
       options: CarouselOptions(
-        height: MediaQuery.of(context).size.height * .4,
-        //aspectRatio: 2.0,
+        height: MediaQuery.of(context).size.height / 3,
+        // aspectRatio: 2 / 1,
         autoPlay: true,
         viewportFraction: 1,
       ),

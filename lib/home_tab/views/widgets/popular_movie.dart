@@ -19,11 +19,11 @@ class PopularMovie extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             SizedBox(
-              height: MediaQuery.of(context).size.height / 10,
+              height: MediaQuery.of(context).size.height / 13,
             ),
-            SizedBox(
-              height: MediaQuery.of(context).size.height / 3.5,
-              width: MediaQuery.of(context).size.width,
+            Expanded(
+              /*   height: MediaQuery.of(context).size.height / 3.5,
+              width: MediaQuery.of(context).size.width, */
               child: Row(
                 // mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
@@ -35,26 +35,28 @@ class PopularMovie extends StatelessWidget {
                     width: MediaQuery.of(context).size.width / 2.5 - 20,
                     height: MediaQuery.of(context).size.height / 4,
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 20, left: 20),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(bottom: 8.0),
-                          child: Text(
-                            result.title ?? '',
-                            softWrap: false,
-                            overflow: TextOverflow.ellipsis,
-                            style: theme.textTheme.headlineMedium,
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.only(bottom: 20, left: 20),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(bottom: 8.0),
+                            child: Text(
+                              result.title ?? '',
+                              softWrap: false,
+                              overflow: TextOverflow.ellipsis,
+                              style: theme.textTheme.headlineMedium,
+                            ),
                           ),
-                        ),
-                        Text(
-                          '${result.releaseDate}  PG-13  2h 7m',
-                          style: theme.textTheme.headlineSmall,
-                        ),
-                      ],
+                          Text(
+                            '${result.releaseDate}',
+                            style: theme.textTheme.headlineSmall,
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ],

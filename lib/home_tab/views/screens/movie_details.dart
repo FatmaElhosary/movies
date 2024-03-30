@@ -61,9 +61,11 @@ class _MovieDetailsState extends State<MovieDetails> {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.only(left: 12.0),
+                          padding: const EdgeInsets.only(left: 12.0, top: 7),
                           child: Text(
                             movie.movie.title ?? '',
+                            softWrap: false,
+                            overflow: TextOverflow.ellipsis,
                             style: Theme.of(context)
                                 .textTheme
                                 .titleMedium!

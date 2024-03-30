@@ -19,11 +19,9 @@ class _HomeTabState extends State<HomeTab> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const Expanded(
-          flex: 4,
           child: PopularCarouselSlider(),
         ),
         Expanded(
-          flex: 3,
           child: Container(
             margin: const EdgeInsets.symmetric(vertical: 20),
             padding: const EdgeInsets.only(top: 8, left: 12, bottom: 8),
@@ -41,7 +39,6 @@ class _HomeTabState extends State<HomeTab> {
           ),
         ),
         Expanded(
-          flex: 3,
           child: Container(
             // margin: const EdgeInsets.only(top: 8),
             padding: const EdgeInsets.only(top: 8, left: 12, bottom: 8),

@@ -10,7 +10,7 @@ class CoverImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: MediaQuery.of(context).size.height / 3.5,
+      height: MediaQuery.of(context).size.height / 4.5,
       width: MediaQuery.of(context).size.width,
       child: CachedNetworkImage(
         imageUrl: '${Constants.baseImageUrl}$imgUrl',
