@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:movies/home_tab/models/popular_movies_res.dart';
 import 'package:movies/home_tab/views/widgets/cover_image.dart';
-import 'package:movies/home_tab/views/widgets/image_container.dart';
+import 'package:movies/home_tab/views/widgets/poster_image.dart';
 
 class PopularMovie extends StatelessWidget {
   const PopularMovie({super.key, required this.result});
@@ -25,12 +25,12 @@ class PopularMovie extends StatelessWidget {
               height: MediaQuery.of(context).size.height / 3.5,
               width: MediaQuery.of(context).size.width,
               child: Row(
-                //mainAxisAlignment: MainAxisAlignment.spaceAround,
+                // mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   const SizedBox(
                     width: 10,
                   ),
-                  ImageContainer(
+                  PosterImage(
                     imgUrl: result.backdropPath ?? '',
                     width: MediaQuery.of(context).size.width / 2.5 - 20,
                     height: MediaQuery.of(context).size.height / 4,
@@ -45,6 +45,8 @@ class PopularMovie extends StatelessWidget {
                           padding: const EdgeInsets.only(bottom: 8.0),
                           child: Text(
                             result.title ?? '',
+                            softWrap: false,
+                            overflow: TextOverflow.ellipsis,
                             style: theme.textTheme.headlineMedium,
                           ),
                         ),
@@ -82,7 +84,7 @@ class PopularMovie extends StatelessWidget {
     ); */
   }
 }
-  /*   Column(
+/*   Column(
           children: [
             const SizedBox(
               height: 100,
@@ -117,7 +119,7 @@ class PopularMovie extends StatelessWidget {
           ],
         ),
        */
-        /*  Container(
+/*  Container(
           width: MediaQuery.of(context).size.width,
           height: 200,
           decoration: BoxDecoration(
@@ -133,4 +135,3 @@ class PopularMovie extends StatelessWidget {
           ),
         ),
          */
-        

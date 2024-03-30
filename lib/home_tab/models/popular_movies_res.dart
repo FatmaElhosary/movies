@@ -1,4 +1,3 @@
-
 class PopularMoviesRes {
   // DateModel? dates;
   int? page;

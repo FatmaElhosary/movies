@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:movies/shared/constants.dart';
 import 'package:movies/home_tab/models/popular_movies_res.dart';
-import 'package:movies/home_tab/views/widgets/image_container.dart';
+import 'package:movies/home_tab/views/widgets/poster_image.dart';
 
 class RecommendedMovie extends StatelessWidget {
   const RecommendedMovie({super.key, required this.movie});
@@ -35,7 +35,7 @@ class RecommendedMovie extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Expanded(
-              child: ImageContainer(
+              child: PosterImage(
                   imgUrl: movie.posterPath ?? '',
                   width: double.infinity,
                   height: 127),
@@ -45,16 +45,28 @@ class RecommendedMovie extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    'headlineLarge',
-                    style: theme.textTheme.headlineLarge,
+                  Row(
+                    children: [
+                      Image.asset(
+                        'assets/images/star.png',
+                        height: 10,
+                        width: 10,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 8.0),
+                        child: Text(
+                          '${movie.voteAverage}',
+                          style: theme.textTheme.headlineLarge,
+                        ),
+                      ),
+                    ],
                   ),
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 5.0),
-                    child: Text('Deadpool 2',
+                    child: Text(movie.originalTitle ?? '',
                         style: theme.textTheme.headlineLarge),
                   ),
-                  Text('2018  R  1h 59m',
+                  Text('${movie.releaseDate}',
                       style:
                           theme.textTheme.headlineSmall!.copyWith(fontSize: 8)),
                 ],

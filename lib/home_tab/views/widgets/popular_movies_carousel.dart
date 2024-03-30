@@ -1,6 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:movies/home_tab/view_model/movies_provider.dart';
+import 'package:movies/home_tab/views/screens/movie_details.dart';
 import 'package:movies/home_tab/views/widgets/popular_movie.dart';
 import 'package:movies/shared/waiting_widget.dart';
 import 'package:provider/provider.dart';
@@ -24,8 +25,17 @@ class PopularCarouselSlider extends StatelessWidget {
             ),
           );
         }
-        return PopularMovie(
-          result: popularProvider.currentPopular[itemIndex],
+        return InkWell(
+          onTap: () => Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => MovieDetails(
+                  movieId: popularProvider.currentPopular[itemIndex].id ?? 1,
+                ),
+              )),
+          child: PopularMovie(
+            result: popularProvider.currentPopular[itemIndex],
+          ),
         );
       },
       options: CarouselOptions(
