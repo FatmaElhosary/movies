@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:movies/shared/constants.dart';
 
-class ImageContainer extends StatelessWidget {
-  const ImageContainer(
+class PosterImage extends StatelessWidget {
+  const PosterImage(
       {super.key, required this.imgUrl, required this.width, this.height});
   final String imgUrl;
   final double width;

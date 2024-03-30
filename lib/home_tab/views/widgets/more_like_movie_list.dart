@@ -5,18 +5,19 @@ import 'package:movies/home_tab/views/widgets/recommend_movie.dart';
 import 'package:movies/shared/waiting_widget.dart';
 import 'package:provider/provider.dart';
 
-class RecommendedList extends StatefulWidget {
-  const RecommendedList({super.key});
+class MoreLikeThisList extends StatefulWidget {
+  const MoreLikeThisList({super.key, required this.movieId});
+  final int movieId;
 
   @override
-  State<RecommendedList> createState() => _RecommendedListState();
+  State<MoreLikeThisList> createState() => _MoreLikeThisListState();
 }
 
-class _RecommendedListState extends State<RecommendedList> {
+class _MoreLikeThisListState extends State<MoreLikeThisList> {
   var moviesModel = MoviesProvider();
   @override
   void initState() {
-    moviesModel.getRecommendedMovies();
+    moviesModel.getSimilarMovies(widget.movieId);
     super.initState();
   }
 
@@ -25,10 +26,10 @@ class _RecommendedListState extends State<RecommendedList> {
     return ChangeNotifierProvider(
       create: (BuildContext context) => moviesModel,
       child: Consumer<MoviesProvider>(
-        builder: (BuildContext context, recommendedMovies, Widget? child) {
-          if (recommendedMovies.recommendedIsLoading) {
+        builder: (BuildContext context, similarMovies, Widget? child) {
+          if (similarMovies.similarIsLoading) {
             return const WatingWidget();
-          } else if (recommendedMovies.recommendedrErrorMessage != null) {
+          } else if (similarMovies.similarErrorMessage != null) {
             return const Text('Error');
           }
           return Expanded(
@@ -39,15 +40,14 @@ class _RecommendedListState extends State<RecommendedList> {
                     context,
                     MaterialPageRoute(
                       builder: (context) => MovieDetails(
-                        movieId:
-                            recommendedMovies.currentRecommended[index].id ?? 1,
+                        movieId: similarMovies.similarMovies[index].id ?? 1,
                       ),
                     )),
                 child: RecommendedMovie(
-                  movie: recommendedMovies.currentRecommended[index],
+                  movie: similarMovies.similarMovies[index],
                 ),
               ),
-              itemCount: recommendedMovies.currentRecommended.length,
+              itemCount: similarMovies.similarMovies.length,
             ),
           );
         },

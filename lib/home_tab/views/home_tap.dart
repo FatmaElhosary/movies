@@ -63,14 +63,7 @@ class _HomeTabState extends State<HomeTab> {
   }
 }
 
-
-
-
-
-
-
-
-     /*   CarouselSlider(
+/*   CarouselSlider(
           options: CarouselOptions(
             height: MediaQuery.of(context).size.height * .3,
             autoPlay: true,
@@ -84,7 +77,7 @@ class _HomeTabState extends State<HomeTab> {
           }).toList(),
         )
        */
-          /*   Stack(
+/*   Stack(
           alignment: AlignmentDirectional.topCenter,
           children: [
             Container(
