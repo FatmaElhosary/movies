@@ -23,7 +23,7 @@ class _HomeTabState extends State<HomeTab> {
         ),
         Expanded(
           child: Container(
-            margin: const EdgeInsets.symmetric(vertical: 20),
+            margin: const EdgeInsets.symmetric(vertical: 30),
             padding: const EdgeInsets.only(top: 8, left: 12, bottom: 8),
             color: Constants.darkgreyColor,
             child: Column(
@@ -40,7 +40,7 @@ class _HomeTabState extends State<HomeTab> {
         ),
         Expanded(
           child: Container(
-            // margin: const EdgeInsets.only(top: 8),
+            margin: const EdgeInsets.only(bottom: 8),
             padding: const EdgeInsets.only(top: 8, left: 12, bottom: 8),
             color: Constants.darkgreyColor,
             child: Column(

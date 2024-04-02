@@ -10,9 +10,8 @@ class RecommendedMovie extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    return Container(
-      margin: const EdgeInsets.only(right: 12, top: 8),
-      decoration: const BoxDecoration(
+    return SizedBox(
+      /*   decoration: const BoxDecoration(
         boxShadow: [
           BoxShadow(
             color: Colors.transparent,
@@ -25,51 +24,63 @@ class RecommendedMovie extends StatelessWidget {
           ),
         ],
       ),
-      height: MediaQuery.of(context).size.height / 3.5,
+       */
+      //height: MediaQuery.of(context).size.height / 3.5,
       width: MediaQuery.of(context).size.width / 3,
       child: Card(
-        margin: EdgeInsets.zero,
+        margin: const EdgeInsets.only(
+          right: 12,
+        ),
         clipBehavior: Clip.antiAlias,
-        color: Constants.darkgreyColor,
+        color: Constants.shadowColor,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Expanded(
+              flex: 2,
               child: PosterImage(
-                  imgUrl: movie.posterPath ?? '',
-                  width: double.infinity,
-                  height: 127),
+                imgUrl: movie.posterPath ?? '',
+                width: double.infinity,
+              ),
             ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    children: [
-                      Image.asset(
-                        'assets/images/star.png',
-                        height: 10,
-                        width: 10,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 8.0),
-                        child: Text(
-                          '${movie.voteAverage}',
-                          style: theme.textTheme.headlineLarge,
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      children: [
+                        Image.asset(
+                          'assets/images/star.png',
+                          height: 10,
+                          width: 10,
                         ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 8.0),
+                          child: Text(
+                            '${movie.voteAverage}',
+                            style: theme.textTheme.headlineLarge,
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ),
+                      ],
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 5.0),
+                      child: Text(
+                        movie.originalTitle ?? '',
+                        style: theme.textTheme.headlineLarge,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
                       ),
-                    ],
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 5.0),
-                    child: Text(movie.originalTitle ?? '',
-                        style: theme.textTheme.headlineLarge),
-                  ),
-                  Text('${movie.releaseDate}',
-                      style:
-                          theme.textTheme.headlineSmall!.copyWith(fontSize: 8)),
-                ],
+                    ),
+                    Text('${movie.releaseDate}',
+                        style: theme.textTheme.headlineSmall!
+                            .copyWith(fontSize: 8)),
+                  ],
+                ),
               ),
             ),
           ],

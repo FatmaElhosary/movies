@@ -42,18 +42,18 @@ class PopularMovie extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.end,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Padding(
-                            padding: const EdgeInsets.only(bottom: 8.0),
-                            child: Text(
-                              result.title ?? '',
-                              softWrap: false,
-                              overflow: TextOverflow.ellipsis,
-                              style: theme.textTheme.headlineMedium,
-                            ),
-                          ),
                           Text(
-                            '${result.releaseDate}',
-                            style: theme.textTheme.headlineSmall,
+                            result.title ?? '',
+                            softWrap: false,
+                            overflow: TextOverflow.ellipsis,
+                            style: theme.textTheme.headlineMedium,
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(top: 4.0),
+                            child: Text(
+                              '${result.releaseDate}',
+                              style: theme.textTheme.headlineSmall,
+                            ),
                           ),
                         ],
                       ),

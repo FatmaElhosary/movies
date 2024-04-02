@@ -9,8 +9,8 @@ class GenreWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      // padding: const EdgeInsets.symmetric(horizontal: 20),
       alignment: Alignment.center,
-      // padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 18),
       decoration: BoxDecoration(
           border: Border.all(color: Constants.darkgreyColor),
           borderRadius: BorderRadius.circular(4)),

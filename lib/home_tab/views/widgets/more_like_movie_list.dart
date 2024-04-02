@@ -34,6 +34,7 @@ class _MoreLikeThisListState extends State<MoreLikeThisList> {
           }
           return Expanded(
             child: ListView.builder(
+              padding: const EdgeInsets.symmetric(vertical: 10),
               scrollDirection: Axis.horizontal,
               itemBuilder: (context, index) => InkWell(
                 onTap: () => Navigator.push(

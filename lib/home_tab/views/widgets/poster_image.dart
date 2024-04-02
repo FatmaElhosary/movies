@@ -12,7 +12,6 @@ class PosterImage extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: width,
-      //height: 127,
       height: height,
       child: CachedNetworkImage(
         imageUrl: '${Constants.baseImageUrl}$imgUrl',
@@ -25,7 +24,8 @@ class PosterImage extends StatelessWidget {
               fit: BoxFit.cover,
             ),
           ),
-          child: Image.asset('assets/images/bookmark.png'),
+          child: InkWell(
+              onTap: () {}, child: Image.asset('assets/images/bookmark.png')),
         ),
         placeholder: (context, url) => const Center(
           child: CircularProgressIndicator(

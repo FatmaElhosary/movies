@@ -9,11 +9,10 @@ class UpcommingMovie extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(right: 12, top: 8),
+      padding: const EdgeInsets.only(right: 12),
       child: PosterImage(
         imgUrl: movie.posterPath ?? "",
         width: MediaQuery.of(context).size.width / 3,
-        height: 127,
       ),
     );
   }
