@@ -6,8 +6,13 @@ class WatingWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Center(
-      child: CircularProgressIndicator(
+    return Container(
+      alignment: Alignment.center,
+      decoration: const BoxDecoration(
+          color: Constants.blackColor,
+          image:
+              DecorationImage(image: AssetImage('assets/images/movies.png'))),
+      child: const CircularProgressIndicator(
         color: Constants.whiteColor,
       ),
     );

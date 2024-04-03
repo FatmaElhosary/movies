@@ -38,48 +38,53 @@ class RecommendedMovie extends StatelessWidget {
           children: [
             Expanded(
               flex: 2,
-              child: PosterImage(
-                movie: movie,
-                width: double.infinity,
+              child: Padding(
+                padding: const EdgeInsets.only(bottom: 8.0),
+                child: PosterImage(
+                  movie: movie,
+                  width: double.infinity,
+                ),
               ),
             ),
             Expanded(
               child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      children: [
-                        Image.asset(
-                          'assets/images/star.png',
-                          height: 10,
-                          width: 10,
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 8.0),
-                          child: Text(
-                            '${movie.voteAverage}',
-                            style: theme.textTheme.headlineLarge,
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
+                padding: const EdgeInsets.only(left: 8.0),
+                child: SingleChildScrollView(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        children: [
+                          Image.asset(
+                            'assets/images/star.png',
+                            height: 10,
+                            width: 10,
                           ),
-                        ),
-                      ],
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 5.0),
-                      child: Text(
-                        movie.originalTitle ?? '',
-                        style: theme.textTheme.headlineLarge,
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
+                          Padding(
+                            padding: const EdgeInsets.only(left: 8.0),
+                            child: Text(
+                              '${movie.voteAverage}',
+                              style: theme.textTheme.headlineLarge,
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ),
+                        ],
                       ),
-                    ),
-                    Text('${movie.releaseDate}',
-                        style: theme.textTheme.headlineSmall!
-                            .copyWith(fontSize: 8)),
-                  ],
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 2),
+                        child: Text(
+                          movie.originalTitle ?? '',
+                          style: theme.textTheme.headlineLarge,
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+                      Text('${movie.releaseDate}',
+                          style: theme.textTheme.headlineSmall!
+                              .copyWith(fontSize: 8)),
+                    ],
+                  ),
                 ),
               ),
             ),

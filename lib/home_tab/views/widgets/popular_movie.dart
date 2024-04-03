@@ -37,7 +37,7 @@ class PopularMovie extends StatelessWidget {
                   ),
                   Expanded(
                     child: Padding(
-                      padding: const EdgeInsets.only(bottom: 20, left: 20),
+                      padding: const EdgeInsets.only(bottom: 5, left: 12),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.end,
                         crossAxisAlignment: CrossAxisAlignment.start,

@@ -39,9 +39,10 @@ class _HomeTabState extends State<HomeTab> {
           ),
         ),
         Expanded(
+          flex: 1,
           child: Container(
             margin: const EdgeInsets.only(bottom: 8),
-            padding: const EdgeInsets.only(top: 8, left: 12, bottom: 8),
+            padding: const EdgeInsets.only(top: 8, left: 12, bottom: 2),
             color: Constants.darkgreyColor,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
