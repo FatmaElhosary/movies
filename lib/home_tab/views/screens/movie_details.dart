@@ -88,7 +88,7 @@ class _MovieDetailsState extends State<MovieDetails> {
                       child: Row(
                         children: [
                           PosterImage(
-                            imgUrl: movie.movie.posterPath ?? '',
+                            movie: movie.movie,
                             width: MediaQuery.of(context).size.width / 3,
                           ),
                           Expanded(

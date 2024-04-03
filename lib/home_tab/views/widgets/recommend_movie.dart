@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:movies/home_tab/models/movie_details/movie_details.dart';
 import 'package:movies/shared/constants.dart';
-import 'package:movies/home_tab/models/popular_movies_res.dart';
 import 'package:movies/home_tab/views/widgets/poster_image.dart';
 
 class RecommendedMovie extends StatelessWidget {
   const RecommendedMovie({super.key, required this.movie});
-  final Result movie;
+  final MovieDetails movie;
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +39,7 @@ class RecommendedMovie extends StatelessWidget {
             Expanded(
               flex: 2,
               child: PosterImage(
-                imgUrl: movie.posterPath ?? '',
+                movie: movie,
                 width: double.infinity,
               ),
             ),

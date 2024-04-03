@@ -4,15 +4,15 @@ import 'package:movies/home_tab/models/popular_movies_res.dart';
 import 'package:movies/home_tab/data/models/movies_model.dart';
 
 class MoviesProvider with ChangeNotifier {
-  List<Result> popularMovies = [];
+  List<MovieDetails> popularMovies = [];
   bool popularIsLoading = false;
   String? popularErrorMessage;
   ////////////////////
-  List<Result> upcommingMovies = [];
+  List<MovieDetails> upcommingMovies = [];
   bool upcommingIsLoading = false;
   String? upcommingrErrorMessage;
   /////////////////
-  List<Result> recommendedMovies = [];
+  List<MovieDetails> recommendedMovies = [];
   bool recommendedIsLoading = false;
   String? recommendedrErrorMessage;
   //////////////
@@ -20,7 +20,7 @@ class MoviesProvider with ChangeNotifier {
   bool movieIsLoading = false;
   String? movieErrorMessage;
   ///////////////////
-  List<Result> similarMovies = [];
+  List<MovieDetails> similarMovies = [];
   bool similarIsLoading = false;
   String? similarErrorMessage;
 //////////////////
