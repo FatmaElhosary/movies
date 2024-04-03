@@ -10,8 +10,10 @@ class WatingWidget extends StatelessWidget {
       alignment: Alignment.center,
       decoration: const BoxDecoration(
           color: Constants.blackColor,
-          image:
-              DecorationImage(image: AssetImage('assets/images/movies.png'))),
+          image: DecorationImage(
+              image: AssetImage(
+            'assets/images/movies.png',
+          ))),
       child: const CircularProgressIndicator(
         color: Constants.whiteColor,
       ),

@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:movies/home_tab/view_model/movies_provider.dart';
 import 'package:movies/shared/constants.dart';
 import 'package:movies/home_tab/views/widgets/popular_movies_carousel.dart';
 import 'package:movies/home_tab/views/widgets/recommended_list.dart';
 import 'package:movies/home_tab/views/widgets/upcomming_list.dart';
+import 'package:provider/provider.dart';
 
 class HomeTab extends StatefulWidget {
   const HomeTab({super.key});
@@ -18,8 +20,10 @@ class _HomeTabState extends State<HomeTab> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Expanded(
-          child: PopularCarouselSlider(),
+        Expanded(
+          child: ChangeNotifierProvider(
+              create: (BuildContext context) => MoviesProvider()..getPopularMovies(),
+              child: const PopularCarouselSlider()),
         ),
         Expanded(
           child: Container(

@@ -8,7 +8,7 @@ class Constants {
   static const Color blackColor = Color(0xFF121312);
   static const Color bgColor = Color(0xFF343534);
   static const Color shadowColor = Color(0xFF343534);
-
+  static const Color iconColor = Color(0xFFC6C6C6);
 
 ////API????????////
   static const baseUrl = 'https://api.themoviedb.org/3/movie';

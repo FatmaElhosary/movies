@@ -27,5 +27,7 @@ class AppTheme {
             fontSize: 10,
             fontWeight: FontWeight.w400,
             fontFamily: 'Poppins'),
+        labelSmall: TextStyle(
+            fontSize: 8, fontWeight: FontWeight.w400, fontFamily: 'Inter'),
       ));
 }

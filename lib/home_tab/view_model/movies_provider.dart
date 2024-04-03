@@ -27,11 +27,7 @@ class MoviesProvider with ChangeNotifier {
   get currentPopular => popularMovies;
   get currentUpcomming => upcommingMovies;
   get currentRecommended => recommendedMovies;
-  MoviesProvider() {
-    getPopularMovies();
-    getUpcommingMovies();
-    // getRecommendedMovies();
-  }
+
   Future<void> getPopularMovies() async {
     popularIsLoading = true;
     notifyListeners();

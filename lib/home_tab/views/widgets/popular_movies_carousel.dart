@@ -6,12 +6,18 @@ import 'package:movies/home_tab/views/widgets/popular_movie.dart';
 import 'package:movies/shared/waiting_widget.dart';
 import 'package:provider/provider.dart';
 
-class PopularCarouselSlider extends StatelessWidget {
+class PopularCarouselSlider extends StatefulWidget {
   const PopularCarouselSlider({super.key});
 
   @override
+  State<PopularCarouselSlider> createState() => _PopularCarouselSliderState();
+}
+
+class _PopularCarouselSliderState extends State<PopularCarouselSlider> {
+  @override
   Widget build(BuildContext context) {
     var popularProvider = Provider.of<MoviesProvider>(context);
+
     return CarouselSlider.builder(
       itemCount: popularProvider.currentPopular.length,
       itemBuilder: (context, int itemIndex, int pageViewIndex) {
