@@ -1,21 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:movies/home_tab/models/movie_details/movie_details.dart';
 import 'package:movies/shared/constants.dart';
 
 class PosterImage extends StatelessWidget {
   const PosterImage(
-      {super.key, required this.imgUrl, required this.width, this.height});
-  final String imgUrl;
+      {super.key, required this.movie, required this.width, this.height});
+  final MovieDetails movie;
   final double width;
   final double? height;
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       width: width,
-      //height: 127,
       height: height,
       child: CachedNetworkImage(
-        imageUrl: '${Constants.baseImageUrl}$imgUrl',
+        imageUrl: '${Constants.baseImageUrl}${movie.posterPath}',
         imageBuilder: (context, imageProvider) => Container(
           alignment: Alignment.topLeft,
           decoration: BoxDecoration(
@@ -25,7 +25,8 @@ class PosterImage extends StatelessWidget {
               fit: BoxFit.cover,
             ),
           ),
-          child: Image.asset('assets/images/bookmark.png'),
+          child: InkWell(
+              onTap: () {}, child: Image.asset('assets/images/bookmark.png')),
         ),
         placeholder: (context, url) => const Center(
           child: CircularProgressIndicator(

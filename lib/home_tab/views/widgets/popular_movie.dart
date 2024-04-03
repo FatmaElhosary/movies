@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:movies/home_tab/models/popular_movies_res.dart';
+import 'package:movies/home_tab/models/movie_details/movie_details.dart';
 import 'package:movies/home_tab/views/widgets/cover_image.dart';
 import 'package:movies/home_tab/views/widgets/poster_image.dart';
 
 class PopularMovie extends StatelessWidget {
   const PopularMovie({super.key, required this.result});
-  final Result result;
+  final MovieDetails result;
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +31,7 @@ class PopularMovie extends StatelessWidget {
                     width: 10,
                   ),
                   PosterImage(
-                    imgUrl: result.backdropPath ?? '',
+                    movie: result,
                     width: MediaQuery.of(context).size.width / 2.5 - 20,
                     height: MediaQuery.of(context).size.height / 4,
                   ),
@@ -42,18 +42,18 @@ class PopularMovie extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.end,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Padding(
-                            padding: const EdgeInsets.only(bottom: 8.0),
-                            child: Text(
-                              result.title ?? '',
-                              softWrap: false,
-                              overflow: TextOverflow.ellipsis,
-                              style: theme.textTheme.headlineMedium,
-                            ),
-                          ),
                           Text(
-                            '${result.releaseDate}',
-                            style: theme.textTheme.headlineSmall,
+                            result.title ?? '',
+                            softWrap: false,
+                            overflow: TextOverflow.ellipsis,
+                            style: theme.textTheme.headlineMedium,
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(top: 4.0),
+                            child: Text(
+                              '${result.releaseDate}',
+                              style: theme.textTheme.headlineSmall,
+                            ),
                           ),
                         ],
                       ),

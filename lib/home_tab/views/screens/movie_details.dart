@@ -88,24 +88,27 @@ class _MovieDetailsState extends State<MovieDetails> {
                       child: Row(
                         children: [
                           PosterImage(
-                            imgUrl: movie.movie.posterPath ?? '',
-                            width: MediaQuery.of(context).size.width / 2.5,
+                            movie: movie.movie,
+                            width: MediaQuery.of(context).size.width / 3,
                           ),
                           Expanded(
                             child: Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 12),
+                              padding: const EdgeInsets.only(left: 10),
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Expanded(
+                                  SizedBox(
+                                    height:
+                                        MediaQuery.of(context).size.height / 18,
                                     child: GridView.builder(
+                                      padding: const EdgeInsets.only(bottom: 5),
                                       gridDelegate:
                                           const SliverGridDelegateWithFixedCrossAxisCount(
-                                              crossAxisCount: 3,
-                                              mainAxisSpacing: 4,
-                                              crossAxisSpacing: 9,
-                                              childAspectRatio: 2 / 1),
+                                        crossAxisCount: 3,
+                                        mainAxisSpacing: 5,
+                                        crossAxisSpacing: 9,
+                                        childAspectRatio: 2 / 1,
+                                      ),
                                       itemBuilder: (context, index) =>
                                           GenreWidget(
                                         gen: movie.movie.genres?[index],
@@ -114,19 +117,22 @@ class _MovieDetailsState extends State<MovieDetails> {
                                     ),
                                   ),
                                   Expanded(
-                                    child: Text(
-                                      movie.movie.overview ?? '',
-                                      softWrap: true,
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .titleMedium!
-                                          .copyWith(
-                                            fontSize: 13,
-                                          ),
+                                    child: SingleChildScrollView(
+                                      child: Text(
+                                        movie.movie.overview ?? '',
+                                        softWrap: true,
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .titleMedium!
+                                            .copyWith(
+                                              fontSize: 13,
+                                            ),
+                                      ),
                                     ),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsets.only(bottom: 12),
+                                    padding: const EdgeInsets.symmetric(
+                                        vertical: 10),
                                     child: Row(
                                       children: [
                                         Image.asset(
@@ -158,7 +164,7 @@ class _MovieDetailsState extends State<MovieDetails> {
                   ),
                   Expanded(
                       child: Container(
-                    // margin: const EdgeInsets.only(top: 8),
+                    margin: const EdgeInsets.only(bottom: 10),
                     padding: const EdgeInsets.only(top: 8, left: 12, bottom: 8),
                     color: Constants.darkgreyColor,
                     child: Column(

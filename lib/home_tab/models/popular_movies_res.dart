@@ -1,7 +1,9 @@
+import 'package:movies/home_tab/models/movie_details/movie_details.dart';
+
 class PopularMoviesRes {
   // DateModel? dates;
   int? page;
-  List<Result>? results;
+  List<MovieDetails>? results;
   int? totalPages;
   int? totalResults;
   String? statusMessage;
@@ -18,7 +20,7 @@ class PopularMoviesRes {
     page = json["page"];
     results = json["results"] == null
         ? null
-        : (json["results"] as List).map((e) => Result.fromJson(e)).toList();
+        : (json["results"] as List).map((e) => MovieDetails.fromMap(e)).toList();
     totalPages = json["total_pages"];
     totalResults = json["total_results"];
     statusMessage = json["status_message"];
@@ -28,7 +30,7 @@ class PopularMoviesRes {
     final Map<String, dynamic> data = <String, dynamic>{};
     data["page"] = page;
     if (results != null) {
-      data["results"] = results?.map((e) => e.toJson()).toList();
+      data["results"] = results?.map((e) => e.toMap()).toList();
     }
     data["total_pages"] = totalPages;
     data["total_results"] = totalResults;
@@ -36,7 +38,7 @@ class PopularMoviesRes {
   }
 }
 
-class Result {
+/* class Result {
   bool? adult;
   String? backdropPath;
   List<int>? genreIds;
@@ -107,3 +109,4 @@ class Result {
     return data;
   }
 }
+ */
