@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:movies/browse_tab/views/screens/browse_screen.dart';
 import 'package:movies/search_tab/views/screens/search_screen.dart';
 import 'package:movies/shared/constants.dart';
 import 'package:movies/home_tab/views/home_tap.dart';
@@ -17,7 +16,7 @@ class _HomeMoviesState extends State<HomeMovies> {
   List<Widget> tabs = [
     const HomeTab(),
     const searchMovies(),
-    const browseMovies(),
+    const searchMovies(),
     const watchedMovies(),
   ];
   int selectedIndex = 0;
