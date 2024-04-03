@@ -14,56 +14,48 @@ class menuScreen extends StatefulWidget {
 }
 
 class _menuScreenState extends State<menuScreen> {
-  List <Widget> tabs = [
+  List<Widget> tabs = [
     HomeMovies(),
     searchMovies(),
-    browseMovies(),
+    BrowseMovies(),
     watchedMovies(),
   ];
-  int selectedIndex = 0 ;
+  int selectedIndex = 0;
   @override
   Widget build(BuildContext context) {
     return Container(
-       decoration: BoxDecoration(
-        color: Constants.bgColor
-        ),
-        child: SafeArea(
+      decoration: BoxDecoration(color: Constants.bgColor),
+      child: SafeArea(
           child: Scaffold(
-            body: tabs[selectedIndex],
-            bottomNavigationBar: BottomNavigationBar(
-              type: BottomNavigationBarType.fixed,
-        currentIndex: selectedIndex,
-        selectedItemColor: Constants.yellowColor,
-        unselectedIconTheme: IconThemeData(color: Constants.lightgreyColor),
-        unselectedLabelStyle: TextStyle(color: Constants.lightgreyColor),
-        iconSize: 32.0,
-        backgroundColor: Constants.darkgreyColor,
-        onTap:(index){
-          selectedIndex =index ;
-          setState((){});
-        },
-         items:[
-          BottomNavigationBarItem(
-          icon: ImageIcon(
-            AssetImage('assets/images/Home icon.png')),
-          label: 'HOME'),
-
-          BottomNavigationBarItem(
-          icon: ImageIcon(
-            AssetImage('assets/images/search.png')),
-          label: 'SEARCH'),
-
-          BottomNavigationBarItem(
-          icon: ImageIcon(
-            AssetImage('assets/images/browseicon.png')),
-          label:'BROWSE'),
-
-          BottomNavigationBarItem(
-          icon: ImageIcon(
-            AssetImage('assets/images/watched.png')),
-          label:'WATCHED'),
-          ],),
-          )),
-        );
+        body: tabs[selectedIndex],
+        bottomNavigationBar: BottomNavigationBar(
+          type: BottomNavigationBarType.fixed,
+          currentIndex: selectedIndex,
+          selectedItemColor: Constants.yellowColor,
+          unselectedIconTheme: IconThemeData(color: Constants.lightgreyColor),
+          unselectedLabelStyle: TextStyle(color: Constants.lightgreyColor),
+          iconSize: 32.0,
+          backgroundColor: Constants.darkgreyColor,
+          onTap: (index) {
+            selectedIndex = index;
+            setState(() {});
+          },
+          items: [
+            BottomNavigationBarItem(
+                icon: ImageIcon(AssetImage('assets/images/Home icon.png')),
+                label: 'HOME'),
+            BottomNavigationBarItem(
+                icon: ImageIcon(AssetImage('assets/images/search.png')),
+                label: 'SEARCH'),
+            BottomNavigationBarItem(
+                icon: ImageIcon(AssetImage('assets/images/browseicon.png')),
+                label: 'BROWSE'),
+            BottomNavigationBarItem(
+                icon: ImageIcon(AssetImage('assets/images/watched.png')),
+                label: 'WATCHED'),
+          ],
+        ),
+      )),
+    );
   }
 }

@@ -27,5 +27,15 @@ class AppTheme {
             fontSize: 10,
             fontWeight: FontWeight.w400,
             fontFamily: 'Poppins'),
+        bodyMedium: TextStyle(
+            color: Constants.whiteColor,
+            fontSize: 22,
+            fontWeight: FontWeight.w400,
+            fontFamily: 'Inter'),
+        bodySmall: TextStyle(
+            color: Constants.whiteColor,
+            fontSize: 14,
+            fontWeight: FontWeight.w600,
+            fontFamily: 'Poppins'),
       ));
 }
