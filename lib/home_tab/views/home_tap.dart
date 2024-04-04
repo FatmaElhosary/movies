@@ -26,7 +26,7 @@ class _HomeTabState extends State<HomeTab> {
               child: const PopularCarouselSlider()),
         ),
         Expanded(
-          child: Container(
+          child:Container(
             margin: const EdgeInsets.symmetric(vertical: 30),
             padding: const EdgeInsets.only(top: 8, left: 12, bottom: 8),
             color: Constants.darkgreyColor,

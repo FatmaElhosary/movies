@@ -3,8 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:movies/browse_tab/views/screens/browse_screen.dart';
 import 'package:movies/shared/app_theme.dart';
 import 'package:movies/home_tab/views/screens/home_screen.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const MoviesApp());
 }
 

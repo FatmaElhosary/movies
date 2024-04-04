@@ -5,7 +5,7 @@ class AppTheme {
   static ThemeData appTheme = ThemeData(
       scaffoldBackgroundColor: Constants.blackColor,
       useMaterial3: true,
-      // scaffoldBackgroundColor: Constants.bgColor,
+      scaffoldBackgroundColor: Constants.bgColor,
       textTheme: const TextTheme(
         headlineMedium: TextStyle(
             color: Constants.whiteColor,
