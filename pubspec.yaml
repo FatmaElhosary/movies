@@ -32,6 +32,7 @@ dependencies:
   provider: ^6.1.2
   cached_network_image: ^3.3.1
   flutter_native_splash: ^2.4.0
+  firebase_core: ^2.28.0
 
 dev_dependencies:
   flutter_test:

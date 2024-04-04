@@ -4,7 +4,7 @@ import 'package:movies/shared/constants.dart';
 class AppTheme {
   static ThemeData appTheme = ThemeData(
       useMaterial3: true,
-      scaffoldBackgroundColor: Constants.bgColor,
+      scaffoldBackgroundColor: Constants.blackColor,
       textTheme: const TextTheme(
         headlineMedium: TextStyle(
             color: Constants.whiteColor,

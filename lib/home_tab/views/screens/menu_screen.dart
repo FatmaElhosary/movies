@@ -37,7 +37,8 @@ class _menuScreenState extends State<menuScreen> {
         unselectedIconTheme: IconThemeData(color: Constants.lightgreyColor),
         unselectedLabelStyle: TextStyle(color: Constants.lightgreyColor),
         iconSize: 32.0,
-        backgroundColor: Constants.darkgreyColor,
+        elevation: 4,
+        backgroundColor: Color(0XFF1A1A1A),
         onTap:(index){
           selectedIndex =index ;
           setState((){});
