@@ -27,7 +27,7 @@ class _UpcomingListState extends State<UpcomingList> {
       child: Consumer<MoviesProvider>(
         builder: (BuildContext context, moviesProvider, Widget? child) {
           if (moviesProvider.upcommingIsLoading) {
-            return const WatingWidget();
+            return const Expanded(child: WatingWidget());
           } else if (moviesProvider.upcommingrErrorMessage != null) {
             return Text(moviesProvider.popularErrorMessage ?? '');
           }

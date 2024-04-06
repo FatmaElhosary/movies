@@ -28,7 +28,7 @@ class _MoreLikeThisListState extends State<MoreLikeThisList> {
       child: Consumer<MoviesProvider>(
         builder: (BuildContext context, similarMovies, Widget? child) {
           if (similarMovies.similarIsLoading) {
-            return const WatingWidget();
+            return const Expanded(child: WatingWidget());
           } else if (similarMovies.similarErrorMessage != null) {
             return const Text('Error');
           }

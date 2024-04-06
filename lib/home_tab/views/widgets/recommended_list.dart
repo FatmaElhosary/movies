@@ -27,9 +27,9 @@ class _RecommendedListState extends State<RecommendedList> {
       child: Consumer<MoviesProvider>(
         builder: (BuildContext context, recommendedMovies, Widget? child) {
           if (recommendedMovies.recommendedIsLoading) {
-            return const WatingWidget();
+            return const Expanded(child: WatingWidget());
           } else if (recommendedMovies.recommendedrErrorMessage != null) {
-            return const Text('Error');
+            return Text(recommendedMovies.recommendedrErrorMessage ?? "");
           }
           return Expanded(
             child: ListView.builder(
