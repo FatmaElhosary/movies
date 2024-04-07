@@ -4,6 +4,7 @@ import 'package:movies/shared/constants.dart';
 class AppTheme {
   static ThemeData appTheme = ThemeData(
       scaffoldBackgroundColor: Constants.blackColor,
+      // searchBarTheme: SearchBarThemeData(backgroundColor:MaterialStateProperty<Color>()),
       useMaterial3: true,
       // scaffoldBackgroundColor: Constants.bgColor,
       textTheme: const TextTheme(

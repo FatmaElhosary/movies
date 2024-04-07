@@ -3,15 +3,19 @@ import 'package:movies/browse_tab/views/screens/category_item.dart';
 
 class BrowseMovies extends StatelessWidget {
   static const String routeName = 'browse';
+  const BrowseMovies({super.key});
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Scaffold(
           body: Column(children: [
-        Text(
-          'Browse Category',
-          style: Theme.of(context).textTheme.bodyMedium,
+        Align(
+          alignment: Alignment.topLeft,
+          child: Text(
+            'Browse Category',
+            style: Theme.of(context).textTheme.bodyMedium,
+          ),
         ),
         const SizedBox(
           height: 8,

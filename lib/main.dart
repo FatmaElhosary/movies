@@ -20,9 +20,8 @@ class MoviesApp extends StatelessWidget {
       theme: AppTheme.appTheme,
       debugShowCheckedModeBanner: false,
       routes: {
-       
         HomeMovies.routeName: (_) => const HomeMovies(),
-        BrowseMovies.routeName: (_) => BrowseMovies(),
+        BrowseMovies.routeName: (_) => const BrowseMovies(),
       },
       initialRoute: HomeMovies.routeName,
     );
