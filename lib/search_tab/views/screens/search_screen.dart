@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
-import 'package:movies/shared/app_theme.dart';
 import 'package:movies/shared/constants.dart';
 
 class SearchMovies extends StatefulWidget {
@@ -18,36 +18,42 @@ class _SearchMoviesState extends State<SearchMovies> {
         body: Column(
       children: [
         Padding(
-          padding: EdgeInsets.all(16.0),
+          padding: const EdgeInsets.all(16.0),
           child: SearchBar(
+            textStyle: MaterialStatePropertyAll(
+                Theme.of(context).textTheme.headlineMedium),
+            side: const MaterialStatePropertyAll(
+                BorderSide(width: 1, color: Constants.whiteColor)),
+            onSubmitted: (searchKey) {},
             hintText: 'Search',
             controller: controller,
-            // backgroundColor: MaterialStateProperty<Color?>?(Color:Constants.darkgreyColor),
-            padding: MaterialStatePropertyAll<EdgeInsets>(
+            backgroundColor:
+                const MaterialStatePropertyAll(Constants.darkgreyColor),
+            padding: const MaterialStatePropertyAll<EdgeInsets>(
                 EdgeInsets.symmetric(horizontal: 16.0)),
-            leading: Icon(
+            leading: const Icon(
               Icons.search,
               color: Constants.whiteColor,
             ),
           ),
         ),
-        Center(
-          child: Expanded(
-            child: Column(
-              children: [
-                Container(
-                  height: 87.86,
-                  width: 78.09,
-                  child: Icon(
-                    Icons.local_movies,
-                    color: Constants.lightgreyColor,
-                  ),
-                ),
-              ],
-            ),
+        const Expanded(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: <Widget>[
+              Icon(
+                Icons.local_movies,
+                color: Constants.lightgreyColor,
+                size: 100,
+              ),
+              Text(
+                'No movies found',
+                textAlign: TextAlign.center,
+              ),
+            ],
           ),
         ),
-        Text('No movies found'),
       ],
     ));
   }
