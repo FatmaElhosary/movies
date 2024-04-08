@@ -18,7 +18,7 @@ class _HomeMoviesState extends State<HomeMovies> {
     const HomeTab(),
     const SearchMovies(),
     const BrowseMovies(),
-    const watchedMovies(),
+    const WatchedMovies(),
   ];
   int selectedIndex = 0;
   @override

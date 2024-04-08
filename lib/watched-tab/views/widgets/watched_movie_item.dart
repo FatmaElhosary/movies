@@ -106,14 +106,14 @@ class _WatchedMovieItemState extends State<WatchedMovieItem> {
     bookMarkedProvider
         .deleteMovie(widget.movie)
         .timeout(const Duration(milliseconds: 500), onTimeout: () {
-      print('deleted');
+    //  print('deleted');
 
       Fluttertoast.showToast(
         msg: "The movie is deleted successfully",
         toastLength: Toast.LENGTH_SHORT,
       );
     }).catchError((_) {
-      print('error');
+      //print('error');
       Fluttertoast.showToast(
         msg: "Ops, there was an error",
         toastLength: Toast.LENGTH_SHORT,
