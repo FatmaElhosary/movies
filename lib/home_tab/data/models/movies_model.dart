@@ -4,7 +4,7 @@ import 'package:movies/home_tab/models/movie_details/movie_details.dart';
 import 'package:movies/shared/constants.dart';
 import 'package:movies/home_tab/models/popular_movies_res.dart';
 
-class MoviesModel {
+class MoviesApiManager {
   static Future<PopularMoviesRes> getPopularMovies() async {
     var url = Uri.parse(
       'https://api.themoviedb.org/3/movie/popular',
@@ -40,6 +40,14 @@ class MoviesModel {
   static Future<PopularMoviesRes> getSimilarMovies(int movieId) async {
     var url = Uri.parse(
       'https://api.themoviedb.org/3/movie/$movieId/similar',
+    );
+    var res = await http.get(url, headers: Constants.headers);
+    return PopularMoviesRes.fromJson(jsonDecode(res.body));
+  }
+
+  static Future<PopularMoviesRes> getMoviesByName(String query) async {
+    var url = Uri.parse(
+      'https://api.themoviedb.org/3/search/movie?query=$query',
     );
     var res = await http.get(url, headers: Constants.headers);
     return PopularMoviesRes.fromJson(jsonDecode(res.body));

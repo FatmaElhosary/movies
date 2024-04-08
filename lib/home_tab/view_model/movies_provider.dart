@@ -32,7 +32,8 @@ class MoviesProvider with ChangeNotifier {
     popularIsLoading = true;
     notifyListeners();
     try {
-      PopularMoviesRes popularMoviesRes = await MoviesModel.getPopularMovies();
+      PopularMoviesRes popularMoviesRes =
+          await MoviesApiManager.getPopularMovies();
       if (popularMoviesRes.statusMessage == null) {
         popularMovies = popularMoviesRes.results ?? [];
       } else {
@@ -51,7 +52,7 @@ class MoviesProvider with ChangeNotifier {
     notifyListeners();
     try {
       PopularMoviesRes upcommingMoviesRes =
-          await MoviesModel.getUpcommingMovies();
+          await MoviesApiManager.getUpcommingMovies();
       if (upcommingMoviesRes.statusMessage == null) {
         upcommingMovies = upcommingMoviesRes.results ?? [];
       } else {
@@ -70,7 +71,7 @@ class MoviesProvider with ChangeNotifier {
     notifyListeners();
     try {
       PopularMoviesRes recommendedMoviesRes =
-          await MoviesModel.getUpcommingMovies();
+          await MoviesApiManager.getUpcommingMovies();
       if (recommendedMoviesRes.statusMessage == null) {
         recommendedMovies = recommendedMoviesRes.results ?? [];
       } else {
@@ -88,7 +89,7 @@ class MoviesProvider with ChangeNotifier {
     movieIsLoading = true;
     notifyListeners();
     try {
-      MovieDetails movieDetailsRes = await MoviesModel.getMovieById(id);
+      MovieDetails movieDetailsRes = await MoviesApiManager.getMovieById(id);
       if (movieDetailsRes.statusMessage == null) {
         movie = movieDetailsRes;
       } else {
@@ -107,7 +108,7 @@ class MoviesProvider with ChangeNotifier {
     notifyListeners();
     try {
       PopularMoviesRes similarMoviesRes =
-          await MoviesModel.getSimilarMovies(id);
+          await MoviesApiManager.getSimilarMovies(id);
       if (similarMoviesRes.statusMessage == null) {
         similarMovies = similarMoviesRes.results ?? [];
       } else {
