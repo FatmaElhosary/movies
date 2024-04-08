@@ -1,16 +1,18 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:movies/home_tab/models/movie_details/movie_details.dart';
 
-
-class FirebaseUtils{
+class FirebaseUtils {
   static CollectionReference<MovieDetails> getMoviesCollection() =>
-      FirebaseFirestore.instance.collection('movies').withConverter<MovieDetails>(
-            fromFirestore:(snapshot, _) =>
+      FirebaseFirestore.instance
+          .collection('movies')
+          .withConverter<MovieDetails>(
+            fromFirestore: (snapshot, _) =>
                 MovieDetails.fromMap(snapshot.data()!),
-            toFirestore:(moviesModel, _) => moviesModel.toMap(),
+            toFirestore: (moviesModel, _) => moviesModel.toMap(),
           );
 
   static Future<void> addMovieToFirestore(MovieDetails movie) {
+    movie.isBookmarked = true;
     final tasksCollection = getMoviesCollection();
     final doc = tasksCollection.doc(movie.id.toString());
     return doc.set(movie);

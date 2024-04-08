@@ -2,11 +2,8 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:movies/shared/waiting_widget.dart';
-import 'package:provider/provider.dart';
-
 import 'package:movies/home_tab/models/movie_details/movie_details.dart';
 import 'package:movies/shared/constants.dart';
-import 'package:movies/watched-tab/data/firebase_utils.dart';
 import 'package:movies/watched-tab/theme/custom_text_style.dart';
 import 'package:movies/watched-tab/theme/theme_helper.dart';
 import 'package:movies/watched-tab/views/widgets/custom_image_view.dart';
@@ -22,6 +19,7 @@ class WatchedMovieItem extends StatefulWidget {
 }
 
 class _WatchedMovieItemState extends State<WatchedMovieItem> {
+  var bookMarkedProvider = WatchListProvider();
   @override
   Widget build(BuildContext context) {
     return Align(
@@ -44,17 +42,18 @@ class _WatchedMovieItemState extends State<WatchedMovieItem> {
                     ),
                   ),
                   width: double.infinity,
-                  //height: 89,
+                  height: double.infinity,
+                  fit: BoxFit.cover,
                   alignment: Alignment.center,
                   imageUrl:
-                      '${Constants.baseImageUrl}${widget.movie.posterPath}',
+                      '${Constants.baseImageUrl}${widget.movie.backdropPath}',
                 ),
                 Align(
                   alignment: Alignment.topLeft,
                   child: Padding(
                     padding: const EdgeInsets.only(right: 29),
                     child: InkWell(
-                      onTap: () {},
+                      onTap: () => deleteMovie(),
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -103,12 +102,12 @@ class _WatchedMovieItemState extends State<WatchedMovieItem> {
     );
   }
 
-  void deleteMovie(BuildContext context) {
-    FirebaseUtils.deleteMovieFromFirestore(widget.movie.id as String)
+  void deleteMovie() {
+    bookMarkedProvider
+        .deleteMovie(widget.movie)
         .timeout(const Duration(milliseconds: 500), onTimeout: () {
-      Provider.of<WatchListProvider>(context, listen: false).getMovies();
-      print('success');
-      setState(() {});
+      print('deleted');
+
       Fluttertoast.showToast(
         msg: "The movie is deleted successfully",
         toastLength: Toast.LENGTH_SHORT,

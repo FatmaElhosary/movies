@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:movies/home_tab/models/movie_details/movie_details.dart';
 import 'package:movies/shared/constants.dart';
-import 'package:movies/watched-tab/data/firebase_utils.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:movies/watched-tab/theme/theme_helper.dart';
+import 'package:movies/watched-tab/watch_tab_provider.dart';
+import 'package:provider/provider.dart';
 
 class PosterImage extends StatefulWidget {
   const PosterImage(
@@ -18,10 +19,19 @@ class PosterImage extends StatefulWidget {
 }
 
 class _PosterImageState extends State<PosterImage> {
-  bool isBookedmarked = false;
+  //bool isBookedmarked = false;
+  late WatchListProvider bookMarkedProvider = WatchListProvider();
+  @override
+  void initState() {
+    //print(widget.movie.id);
+    bookMarkedProvider.getMovies();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
+    bookMarkedProvider = WatchListProvider();
+
     return SizedBox(
       width: widget.width,
       height: widget.height,
@@ -36,11 +46,17 @@ class _PosterImageState extends State<PosterImage> {
               fit: BoxFit.cover,
             ),
           ),
-          child: InkWell(
-              onTap: addToWatchlist,
-              child: isBookedmarked
-                  ? Image.asset('assets/images/bookmarked.png')
-                  : Image.asset('assets/images/bookmark.png')),
+          child: ChangeNotifierProvider(
+            create: (BuildContext context) => bookMarkedProvider,
+            child: InkWell(
+                onTap: addToWatchlist,
+                child: Provider.of<WatchListProvider>(context).movies.any(
+                            (movie) =>
+                                movie.posterPath == widget.movie.posterPath) ||
+                        widget.movie.isBookmarked != null
+                    ? Image.asset('assets/images/bookmarked.png')
+                    : Image.asset('assets/images/bookmark.png')),
+          ),
         ),
         placeholder: (context, url) => const Center(
           child: CircularProgressIndicator(
@@ -58,12 +74,16 @@ class _PosterImageState extends State<PosterImage> {
   }
 
   void addToWatchlist() {
-    FirebaseUtils.addMovieToFirestore(widget.movie)
+    if (widget.movie.isBookmarked != null) {
+      return;
+    }
+    //add
+    bookMarkedProvider
+        .addMovie(widget.movie)
         .timeout(const Duration(milliseconds: 500), onTimeout: () {
       print('success');
-      setState(() {
-        isBookedmarked = true;
-      });
+      widget.movie.isBookmarked = true;
+      setState(() {});
       Fluttertoast.showToast(
         msg: "The movie is added successfully",
         toastLength: Toast.LENGTH_SHORT,
@@ -78,6 +98,7 @@ class _PosterImageState extends State<PosterImage> {
     });
   }
 }
+
 
 
 
