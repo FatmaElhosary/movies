@@ -12,7 +12,8 @@ import 'package:movies/watched-tab/watch_tab_provider.dart';
 
 class WatchedMovieItem extends StatefulWidget {
   final MovieDetails movie;
-  const WatchedMovieItem(this.movie, {super.key});
+  final bool isMarked;
+  const WatchedMovieItem(this.movie, {super.key, this.isMarked = true});
 
   @override
   State<WatchedMovieItem> createState() => _WatchedMovieItemState();
@@ -48,22 +49,25 @@ class _WatchedMovieItemState extends State<WatchedMovieItem> {
                   imageUrl:
                       '${Constants.baseImageUrl}${widget.movie.backdropPath}',
                 ),
-                Align(
-                  alignment: Alignment.topLeft,
-                  child: Padding(
-                    padding: const EdgeInsets.only(right: 29),
-                    child: InkWell(
-                      onTap: () => deleteMovie(),
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          CustomImageView(
-                            imagePath: ImageConstant.imgBookmarked,
-                            width: 27,
-                          ),
-                          const SizedBox(height: 8),
-                        ],
+                Visibility(
+                  visible: widget.isMarked,
+                  child: Align(
+                    alignment: Alignment.topLeft,
+                    child: Padding(
+                      padding: const EdgeInsets.only(right: 29),
+                      child: InkWell(
+                        onTap: () => deleteMovie(),
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            CustomImageView(
+                              imagePath: ImageConstant.imgBookmarked,
+                              width: 27,
+                            ),
+                            const SizedBox(height: 8),
+                          ],
+                        ),
                       ),
                     ),
                   ),
@@ -71,30 +75,34 @@ class _WatchedMovieItemState extends State<WatchedMovieItem> {
               ],
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.only(
-              left: 10,
-              top: 16,
-              bottom: 12,
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  widget.movie.title!,
-                  style: CustomTextStyles.bodyMediumWhiteA700,
-                ),
-                const SizedBox(height: 3),
-                Text(
-                  widget.movie.releaseDate!,
-                  style: theme.textTheme.bodyMedium,
-                ),
-                const SizedBox(height: 5),
-                // Text(
-                //   "Rosa Salazar, Christoph Waltz",
-                //   style: theme.textTheme.bodyMedium,
-                // ),
-              ],
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.only(
+                left: 10,
+                top: 16,
+                bottom: 12,
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    widget.movie.title!,
+                    style: CustomTextStyles.bodyMediumWhiteA700,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                  const SizedBox(height: 3),
+                  Text(
+                    widget.movie.releaseDate!,
+                    style: theme.textTheme.bodyMedium,
+                  ),
+                  const SizedBox(height: 5),
+                  // Text(
+                  //   "Rosa Salazar, Christoph Waltz",
+                  //   style: theme.textTheme.bodyMedium,
+                  // ),
+                ],
+              ),
             ),
           ),
         ],
@@ -106,7 +114,7 @@ class _WatchedMovieItemState extends State<WatchedMovieItem> {
     bookMarkedProvider
         .deleteMovie(widget.movie)
         .timeout(const Duration(milliseconds: 500), onTimeout: () {
-    //  print('deleted');
+      //  print('deleted');
 
       Fluttertoast.showToast(
         msg: "The movie is deleted successfully",
