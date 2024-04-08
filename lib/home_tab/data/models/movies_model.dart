@@ -52,4 +52,12 @@ class MoviesApiManager {
     var res = await http.get(url, headers: Constants.headers);
     return PopularMoviesRes.fromJson(jsonDecode(res.body));
   }
+
+  static Future<MovieDetails> getGenres() async {
+    var url = Uri.parse(
+      'https://api.themoviedb.org/3/genre/movie/list',
+    );
+    var res = await http.get(url, headers: Constants.headers);
+    return MovieDetails.fromMap(jsonDecode(res.body));
+  }
 }

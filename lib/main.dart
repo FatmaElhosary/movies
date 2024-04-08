@@ -1,6 +1,5 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:movies/browse_tab/views/screens/browse_screen.dart';
 import 'package:movies/shared/app_theme.dart';
 import 'package:movies/home_tab/views/screens/home_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -27,7 +26,6 @@ class MoviesApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       routes: {
         HomeMovies.routeName: (_) => const HomeMovies(),
-        BrowseMovies.routeName: (_) => const BrowseMovies(),
       },
       initialRoute: HomeMovies.routeName,
     );

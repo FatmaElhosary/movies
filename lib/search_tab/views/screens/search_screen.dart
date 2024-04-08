@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:movies/search_tab/view_model/search_provider.dart';
 
 import 'package:movies/shared/constants.dart';
