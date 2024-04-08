@@ -15,9 +15,9 @@ class HomeMovies extends StatefulWidget {
 class _HomeMoviesState extends State<HomeMovies> {
   List<Widget> tabs = [
     const HomeTab(),
-    const searchMovies(),
-    const searchMovies(),
-    const watchedMovies(),
+    const SearchMovies(),
+    const SearchMovies(),
+    const WatchedMovies(),
   ];
   int selectedIndex = 0;
   @override

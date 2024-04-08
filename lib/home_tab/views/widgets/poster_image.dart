@@ -7,8 +7,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:movies/watched-tab/theme/theme_helper.dart';
 
 class PosterImage extends StatefulWidget {
-
-   PosterImage(
+  const PosterImage(
       {super.key, required this.movie, required this.width, this.height});
   final MovieDetails movie;
   final double width;
@@ -19,7 +18,7 @@ class PosterImage extends StatefulWidget {
 }
 
 class _PosterImageState extends State<PosterImage> {
-  bool isBookedmarked =false;
+  bool isBookedmarked = false;
 
   @override
   Widget build(BuildContext context) {
@@ -38,8 +37,10 @@ class _PosterImageState extends State<PosterImage> {
             ),
           ),
           child: InkWell(
-      onTap:addToWatchlist,
-        child:isBookedmarked? Image.asset('assets/images/bookmarked.png'):Image.asset('assets/images/bookmark.png')),
+              onTap: addToWatchlist,
+              child: isBookedmarked
+                  ? Image.asset('assets/images/bookmarked.png')
+                  : Image.asset('assets/images/bookmark.png')),
         ),
         placeholder: (context, url) => const Center(
           child: CircularProgressIndicator(
@@ -56,32 +57,26 @@ class _PosterImageState extends State<PosterImage> {
     );
   }
 
-  void addToWatchlist(){
-  FirebaseUtils.addMovieToFirestore(
-    MovieDetails(
-      id: widget.movie.id,
-      title: widget.movie.title,
-      releaseDate:widget.movie.releaseDate ,
-    ),
-  ).timeout(
-    const Duration(milliseconds: 500),
-    onTimeout:(){
+  void addToWatchlist() {
+    FirebaseUtils.addMovieToFirestore(widget.movie)
+        .timeout(const Duration(milliseconds: 500), onTimeout: () {
       print('success');
-      setState((){isBookedmarked = true;});
+      setState(() {
+        isBookedmarked = true;
+      });
       Fluttertoast.showToast(
         msg: "The movie is added successfully",
         toastLength: Toast.LENGTH_SHORT,
-    );
-    }
-  ).catchError((_){
-    print('error');
-    Fluttertoast.showToast(
+      );
+    }).catchError((_) {
+      print('error');
+      Fluttertoast.showToast(
         msg: "Ops, there was an error",
         toastLength: Toast.LENGTH_SHORT,
         backgroundColor: appTheme.gray40001,
-    );
-  });
-}
+      );
+    });
+  }
 }
 
 

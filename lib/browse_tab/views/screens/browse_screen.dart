@@ -3,6 +3,8 @@ import 'package:movies/browse_tab/views/screens/category_item.dart';
 
 class BrowseMovies extends StatelessWidget {
   static const String routeName = 'browse';
+
+  const BrowseMovies({super.key});
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -24,7 +26,7 @@ class BrowseMovies extends StatelessWidget {
             mainAxisSpacing: 30,
             crossAxisSpacing: 20,
           ),
-          itemBuilder: (context, index) => CategoryItem(),
+          itemBuilder: (context, index) => const CategoryItem(),
         ))
       ])),
     );

@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 
 class CategoryItem extends StatelessWidget {
+  const CategoryItem({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: 90,
       width: 158,
       child: Stack(

@@ -1,7 +1,7 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:movies/shared/waiting_widget.dart';
 import 'package:provider/provider.dart';
 
 import 'package:movies/home_tab/models/movie_details/movie_details.dart';
@@ -11,18 +11,17 @@ import 'package:movies/watched-tab/theme/custom_text_style.dart';
 import 'package:movies/watched-tab/theme/theme_helper.dart';
 import 'package:movies/watched-tab/views/widgets/custom_image_view.dart';
 import 'package:movies/watched-tab/views/widgets/image_constant.dart';
-import 'package:movies/watched-tab/watchTab_provider.dart';
+import 'package:movies/watched-tab/watch_tab_provider.dart';
 
-// ignore: must_be_immutable
-class watchedMovieItem extends StatefulWidget {
+class WatchedMovieItem extends StatefulWidget {
   final MovieDetails movie;
-   watchedMovieItem(this.movie);
+  const WatchedMovieItem(this.movie, {super.key});
 
   @override
-  State<watchedMovieItem> createState() => _watchedMovieItemState();
+  State<WatchedMovieItem> createState() => _WatchedMovieItemState();
 }
 
-class _watchedMovieItemState extends State<watchedMovieItem> {
+class _WatchedMovieItemState extends State<WatchedMovieItem> {
   @override
   Widget build(BuildContext context) {
     return Align(
@@ -36,29 +35,37 @@ class _watchedMovieItemState extends State<watchedMovieItem> {
             child: Stack(
               alignment: Alignment.topLeft,
               children: [
-                CachedNetworkImage
-                (
-                  imageUrl: '${Constants.baseImageUrl}${widget.movie.posterPath}',
-                  height: 89,
+                CachedNetworkImage(
+                  placeholder: (context, url) => const WatingWidget(),
+                  errorWidget: (context, url, error) => const Center(
+                    child: Icon(
+                      Icons.error,
+                      color: Constants.whiteColor,
+                    ),
+                  ),
+                  width: double.infinity,
+                  //height: 89,
                   alignment: Alignment.center,
+                  imageUrl:
+                      '${Constants.baseImageUrl}${widget.movie.posterPath}',
                 ),
                 Align(
                   alignment: Alignment.topLeft,
                   child: Padding(
-                    padding: EdgeInsets.only(right: 29),
+                    padding: const EdgeInsets.only(right: 29),
                     child: InkWell(
-                      onTap: (){},
+                      onTap: () {},
                       child: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            CustomImageView(
-                              imagePath: ImageConstant.imgBookmarked,
-                              width: 27,
-                            ),
-                            SizedBox(height: 8),
-                          ],
-                        ),
+                        mainAxisSize: MainAxisSize.min,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          CustomImageView(
+                            imagePath: ImageConstant.imgBookmarked,
+                            width: 27,
+                          ),
+                          const SizedBox(height: 8),
+                        ],
+                      ),
                     ),
                   ),
                 ),
@@ -66,7 +73,7 @@ class _watchedMovieItemState extends State<watchedMovieItem> {
             ),
           ),
           Padding(
-            padding: EdgeInsets.only(
+            padding: const EdgeInsets.only(
               left: 10,
               top: 16,
               bottom: 12,
@@ -78,12 +85,12 @@ class _watchedMovieItemState extends State<watchedMovieItem> {
                   widget.movie.title!,
                   style: CustomTextStyles.bodyMediumWhiteA700,
                 ),
-                SizedBox(height: 3),
+                const SizedBox(height: 3),
                 Text(
                   widget.movie.releaseDate!,
                   style: theme.textTheme.bodyMedium,
                 ),
-                SizedBox(height: 5),
+                const SizedBox(height: 5),
                 // Text(
                 //   "Rosa Salazar, Christoph Waltz",
                 //   style: theme.textTheme.bodyMedium,
@@ -96,27 +103,24 @@ class _watchedMovieItemState extends State<watchedMovieItem> {
     );
   }
 
-   void deleteMovie(BuildContext context){
+  void deleteMovie(BuildContext context) {
     FirebaseUtils.deleteMovieFromFirestore(widget.movie.id as String)
-    .timeout(
-    const Duration(milliseconds: 500),
-    onTimeout:(){
-      Provider.of <WatchlistProvider>(context,listen: false).getMovies();
+        .timeout(const Duration(milliseconds: 500), onTimeout: () {
+      Provider.of<WatchListProvider>(context, listen: false).getMovies();
       print('success');
       setState(() {});
       Fluttertoast.showToast(
         msg: "The movie is deleted successfully",
         toastLength: Toast.LENGTH_SHORT,
-    );
-    }
-  ).catchError((_){
-    print('error');
-    Fluttertoast.showToast(
+      );
+    }).catchError((_) {
+      print('error');
+      Fluttertoast.showToast(
         msg: "Ops, there was an error",
         toastLength: Toast.LENGTH_SHORT,
         backgroundColor: appTheme.gray40001,
-    );
-  });
+      );
+    });
   }
 }
 
