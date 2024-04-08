@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:movies/home_tab/models/movie_details/movie_details.dart';
 import 'package:movies/shared/constants.dart';
 import 'package:movies/home_tab/views/widgets/poster_image.dart';
+import 'package:movies/watched-tab/data/firebase_utils.dart';
 
 class RecommendedMovie extends StatelessWidget {
   const RecommendedMovie({super.key, required this.movie});

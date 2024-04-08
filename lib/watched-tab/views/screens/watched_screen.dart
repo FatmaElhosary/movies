@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:movies/watched-tab/theme/theme_helper.dart';
-import 'package:movies/watched-tab/views/widgets/watchListView.dart';
+import 'package:movies/watched-tab/views/widgets/watchedMovieItem.dart';
+import 'package:movies/watched-tab/watchTab_provider.dart';
+import 'package:provider/provider.dart';
 
 
 class watchedMovies extends StatelessWidget {
@@ -9,6 +10,8 @@ class watchedMovies extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final watchProvider = Provider.of <WatchlistProvider>(context);
+    watchProvider.getMovies();
     return SafeArea(
       child: Scaffold(
         body: Column(
@@ -22,7 +25,23 @@ class watchedMovies extends StatelessWidget {
             ),
             const SizedBox(height: 15),
             Expanded(
-              child: WatchListView(),
+              child:ListView.separated(
+      scrollDirection: Axis.vertical,
+      itemBuilder: (context,index) => watchedMovieItem(watchProvider.movies[index]),
+      separatorBuilder: (context,index) {
+        return Padding(
+      padding: EdgeInsets.symmetric(vertical: 6.5),
+      child: SizedBox(
+        width: 358,
+        child: Divider(
+          height: 1,
+          thickness: 1,
+          color: appTheme.gray600,
+        ),
+      ),
+    );
+      },
+      itemCount: watchProvider.movies.length),
             )
           ],
         ),

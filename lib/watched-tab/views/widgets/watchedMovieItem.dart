@@ -1,16 +1,28 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:provider/provider.dart';
+
+import 'package:movies/home_tab/models/movie_details/movie_details.dart';
+import 'package:movies/shared/constants.dart';
+import 'package:movies/watched-tab/data/firebase_utils.dart';
 import 'package:movies/watched-tab/theme/custom_text_style.dart';
 import 'package:movies/watched-tab/theme/theme_helper.dart';
 import 'package:movies/watched-tab/views/widgets/custom_image_view.dart';
 import 'package:movies/watched-tab/views/widgets/image_constant.dart';
+import 'package:movies/watched-tab/watchTab_provider.dart';
 
 // ignore: must_be_immutable
-class watchedMovieItem extends StatelessWidget {
-  const watchedMovieItem({Key? key})
-      : super(
-          key: key,
-        );
+class watchedMovieItem extends StatefulWidget {
+  final MovieDetails movie;
+   watchedMovieItem(this.movie);
 
+  @override
+  State<watchedMovieItem> createState() => _watchedMovieItemState();
+}
+
+class _watchedMovieItemState extends State<watchedMovieItem> {
   @override
   Widget build(BuildContext context) {
     return Align(
@@ -24,28 +36,29 @@ class watchedMovieItem extends StatelessWidget {
             child: Stack(
               alignment: Alignment.topLeft,
               children: [
-                CustomImageView(
-                  imagePath: ImageConstant.img,
+                CachedNetworkImage
+                (
+                  imageUrl: '${Constants.baseImageUrl}${widget.movie.posterPath}',
                   height: 89,
-                  radius: BorderRadius.circular(
-                    4,
-                  ),
                   alignment: Alignment.center,
                 ),
                 Align(
                   alignment: Alignment.topLeft,
                   child: Padding(
                     padding: EdgeInsets.only(right: 29),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        CustomImageView(
-                          imagePath: ImageConstant.imgBookmarked,
-                          width: 27,
+                    child: InkWell(
+                      onTap: (){},
+                      child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            CustomImageView(
+                              imagePath: ImageConstant.imgBookmarked,
+                              width: 27,
+                            ),
+                            SizedBox(height: 8),
+                          ],
                         ),
-                        SizedBox(height: 8),
-                      ],
                     ),
                   ),
                 ),
@@ -62,19 +75,19 @@ class watchedMovieItem extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "Alita Battle Angel",
+                  widget.movie.title!,
                   style: CustomTextStyles.bodyMediumWhiteA700,
                 ),
                 SizedBox(height: 3),
                 Text(
-                  "2019",
+                  widget.movie.releaseDate!,
                   style: theme.textTheme.bodyMedium,
                 ),
                 SizedBox(height: 5),
-                Text(
-                  "Rosa Salazar, Christoph Waltz",
-                  style: theme.textTheme.bodyMedium,
-                ),
+                // Text(
+                //   "Rosa Salazar, Christoph Waltz",
+                //   style: theme.textTheme.bodyMedium,
+                // ),
               ],
             ),
           ),
@@ -82,4 +95,36 @@ class watchedMovieItem extends StatelessWidget {
       ),
     );
   }
+
+   void deleteMovie(BuildContext context){
+    FirebaseUtils.deleteMovieFromFirestore(widget.movie.id as String)
+    .timeout(
+    const Duration(milliseconds: 500),
+    onTimeout:(){
+      Provider.of <WatchlistProvider>(context,listen: false).getMovies();
+      print('success');
+      setState(() {});
+      Fluttertoast.showToast(
+        msg: "The movie is deleted successfully",
+        toastLength: Toast.LENGTH_SHORT,
+    );
+    }
+  ).catchError((_){
+    print('error');
+    Fluttertoast.showToast(
+        msg: "Ops, there was an error",
+        toastLength: Toast.LENGTH_SHORT,
+        backgroundColor: appTheme.gray40001,
+    );
+  });
+  }
 }
+
+// CustomImageView(
+//                   imagePath: '${Constants.baseImageUrl}${widget.movie.posterPath}',
+//                   height: 89,
+//                   radius: BorderRadius.circular(
+//                     4,
+//                   ),
+//                   alignment: Alignment.center,
+//                 ),
