@@ -8,6 +8,7 @@ import 'spoken_language.dart';
 class MovieDetails {
   final String? statusMessage;
   final bool? adult;
+   bool? isBookmarked;
   final String? backdropPath;
   final dynamic belongsToCollection;
   final int? budget;
@@ -33,8 +34,9 @@ class MovieDetails {
   final double? voteAverage;
   final int? voteCount;
 
-  const MovieDetails(
-      {this.adult,
+   MovieDetails(
+      {this.isBookmarked,
+      this.adult,
       this.backdropPath,
       this.belongsToCollection,
       this.budget,
@@ -63,6 +65,7 @@ class MovieDetails {
 
   factory MovieDetails.fromMap(Map<String, dynamic> data) => MovieDetails(
         adult: data['adult'] as bool?,
+        isBookmarked: data['isBookmarked'] as bool?,
         backdropPath: data['backdrop_path'] as String?,
         belongsToCollection: data['belongs_to_collection'] as dynamic,
         budget: data['budget'] as int?,
@@ -99,6 +102,7 @@ class MovieDetails {
       );
 
   Map<String, dynamic> toMap() => {
+        "isBookmarked": isBookmarked,
         'adult': adult,
         'backdrop_path': backdropPath,
         'belongs_to_collection': belongsToCollection,

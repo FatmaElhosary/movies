@@ -2,20 +2,41 @@ import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:movies/home_tab/models/movie_details/movie_details.dart';
 import 'package:movies/shared/constants.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:movies/watched-tab/theme/theme_helper.dart';
+import 'package:movies/watched-tab/watch_tab_provider.dart';
+import 'package:provider/provider.dart';
 
-class PosterImage extends StatelessWidget {
+class PosterImage extends StatefulWidget {
   const PosterImage(
       {super.key, required this.movie, required this.width, this.height});
   final MovieDetails movie;
   final double width;
   final double? height;
+
+  @override
+  State<PosterImage> createState() => _PosterImageState();
+}
+
+class _PosterImageState extends State<PosterImage> {
+  //bool isBookedmarked = false;
+  late WatchListProvider bookMarkedProvider = WatchListProvider();
+  @override
+  void initState() {
+    //print(widget.movie.id);
+    bookMarkedProvider.getMovies();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
+    bookMarkedProvider = WatchListProvider();
+
     return SizedBox(
-      width: width,
-      height: height,
+      width: widget.width,
+      height: widget.height,
       child: CachedNetworkImage(
-        imageUrl: '${Constants.baseImageUrl}${movie.posterPath}',
+        imageUrl: '${Constants.baseImageUrl}${widget.movie.posterPath}',
         imageBuilder: (context, imageProvider) => Container(
           alignment: Alignment.topLeft,
           decoration: BoxDecoration(
@@ -25,8 +46,17 @@ class PosterImage extends StatelessWidget {
               fit: BoxFit.cover,
             ),
           ),
-          child: InkWell(
-              onTap: () {}, child: Image.asset('assets/images/bookmark.png')),
+          child: ChangeNotifierProvider(
+            create: (BuildContext context) => bookMarkedProvider,
+            child: InkWell(
+                onTap: addToWatchlist,
+                child: Provider.of<WatchListProvider>(context).movies.any(
+                            (movie) =>
+                                movie.posterPath == widget.movie.posterPath) ||
+                        widget.movie.isBookmarked != null
+                    ? Image.asset('assets/images/bookmarked.png')
+                    : Image.asset('assets/images/bookmark.png')),
+          ),
         ),
         placeholder: (context, url) => const Center(
           child: CircularProgressIndicator(
@@ -42,7 +72,37 @@ class PosterImage extends StatelessWidget {
       ),
     );
   }
+
+  void addToWatchlist() {
+    if (widget.movie.isBookmarked != null) {
+      return;
+    }
+    //add
+    bookMarkedProvider
+        .addMovie(widget.movie)
+        .timeout(const Duration(milliseconds: 500), onTimeout: () {
+      print('success');
+      widget.movie.isBookmarked = true;
+      setState(() {});
+      Fluttertoast.showToast(
+        msg: "The movie is added successfully",
+        toastLength: Toast.LENGTH_SHORT,
+      );
+    }).catchError((_) {
+      print('error');
+      Fluttertoast.showToast(
+        msg: "Ops, there was an error",
+        toastLength: Toast.LENGTH_SHORT,
+        backgroundColor: appTheme.gray40001,
+      );
+    });
+  }
 }
+
+
+
+
+
 /*  CachedNetworkImage(
       imageUrl: '${Constants.baseImageUrl}$imgUrl',
       width: width,
