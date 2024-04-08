@@ -12,41 +12,46 @@ class WatchedMovies extends StatelessWidget {
     final watchProvider = Provider.of<WatchListProvider>(context);
     watchProvider.getMovies();
     return SafeArea(
-      child: Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.transparent,
-        ),
-        body: Column(
-          children: [
-            Align(
-              alignment: Alignment.centerLeft,
-              child: Text(
-                "Watchlist",
-                style: theme.textTheme.titleLarge,
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Scaffold(
+          appBar: AppBar(
+            backgroundColor: Colors.transparent,
+          ),
+          body: Column(
+            children: [
+              Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  "Watchlist",
+                  style: theme.textTheme.titleLarge,
+                ),
               ),
-            ),
-            const SizedBox(height: 15),
-            Expanded(
-              child: ListView.separated(
-                  scrollDirection: Axis.vertical,
-                  itemBuilder: (context, index) =>
-                      WatchedMovieItem(watchProvider.movies[index]),
-                  separatorBuilder: (context, index) {
-                    return Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 6.5),
-                      child: SizedBox(
-                        width: 358,
-                        child: Divider(
-                          height: 1,
-                          thickness: 1,
-                          color: appTheme.gray600,
+              const SizedBox(height: 15),
+              Expanded(
+                child: ListView.separated(
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                    scrollDirection: Axis.vertical,
+                    itemBuilder: (context, index) =>
+                        WatchedMovieItem(watchProvider.movies[index]),
+                    separatorBuilder: (context, index) {
+                      return Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 6.5),
+                        child: SizedBox(
+                          width: 358,
+                          child: Divider(
+                            height: 20,
+                            thickness: 1,
+                            color: appTheme.gray600,
+                          ),
                         ),
-                      ),
-                    );
-                  },
-                  itemCount: watchProvider.movies.length),
-            )
-          ],
+                      );
+                    },
+                    itemCount: watchProvider.movies.length),
+              )
+            ],
+          ),
         ),
       ),
     );
